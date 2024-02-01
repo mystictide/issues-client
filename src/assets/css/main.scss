@@ -14,19 +14,26 @@ $font-sans: sans-serif;
 $white: #ffffff;
 $black: #111111;
 
-$dark: #776b5d;
-$light: #b0a695;
-$flavour-color: #74aa9f;
+$dark: #1b1a1a;
+$variant: #74aa9f;
 
-@mixin transition($color: $flavour-color) {
+@mixin text-transition($color: $variant) {
     transition: all 0.35s ease;
     -webkit-transition: all 0.35s ease;
     &:hover {
-        color: $color;
+        color: rgba($color: $color, $alpha: 0.5);
     }
 }
 
-@mixin no-select {
+@mixin bg-transition($color: $variant) {
+    transition: all 0.35s ease;
+    -webkit-transition: all 0.35s ease;
+    &:hover {
+        background-color: rgba($color: $color, $alpha: 0.5);
+    }
+}
+
+.no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -60,19 +67,26 @@ body {
     width: 100%;
     height: 100vh;
     font-family: $font-mont;
+    font-size: 16px;
     color: $black;
-    background-color: $light;
+    background-color: $white;
 
+    .bg {
+        background-color: darken($color: $white, $amount: 10);
+    }
     .Toastify__toast {
-        background: $light !important;
+        background: $white !important;
     }
     .toastBody {
         font-family: $font-mont;
-        color: $light;
+        color: $white;
         font-size: 0.9rem !important;
     }
     .toastProgress {
-        background: $flavour-color !important;
+        background: $variant !important;
+    }
+    a {
+        color: $black;
     }
 }
 
@@ -80,6 +94,9 @@ body[data-theme="dark"] {
     background-color: $dark;
     color: $white;
 
+    .bg {
+        background-color: lighten($color: $dark, $amount: 10);
+    }
     .modal-content {
         background: $dark;
     }
@@ -87,8 +104,41 @@ body[data-theme="dark"] {
         background: $dark !important;
     }
     .toastBody {
-        color: $light;
+        color: $white;
     }
+    input {
+        color: $white;
+        background-color: $dark;
+        @include bg-transition();
+        &::placeholder {
+            color: $white;
+            opacity: 0.8;
+        }
+        &::-ms-input-placeholder {
+            color: $white;
+        }
+    }
+    button {
+        color: $white;
+        background-color: $dark;
+        @include bg-transition();
+    }
+    a {
+        color: $white;
+    }
+}
+
+.w-400 {
+    width: 400px;
+}
+.w-half {
+    width: 50%;
+}
+.w-full {
+    width: 100%;
+}
+.h-full {
+    height: 100%;
 }
 
 .flex-row {
@@ -103,35 +153,110 @@ body[data-theme="dark"] {
     row-gap: 1rem;
 }
 
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-end {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.self-start {
+    align-self: flex-start;
+}
+
+.self-end {
+    align-self: flex-end;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-button {
+span.function {
     cursor: pointer;
-    font-size: 14px;
-    background-color: rgba($color: $light, $alpha: 0.7);
-    width: auto;
-    height: 100%;
-    border: none;
-    border-radius: 3px;
-    outline: none;
-    padding: 0 10px;
-    color: $white;
-    @include transition();
-    @include no-select();
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .interactive {
     padding: 3px;
-    @include transition();
-
     border-radius: 33px;
     svg {
+        transition: all 0.35s ease;
+        -webkit-bg-transition: all 0.35s ease;
         cursor: pointer;
     }
+    &:hover {
+        svg {
+            transition: all 0.35s ease;
+            -webkit-bg-transition: all 0.35s ease;
+            color: $variant;
+        }
+    }
+}
+
+input {
+    height: 35px;
+    width: 100%;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: $dark;
+    @include bg-transition();
+    &::placeholder {
+        color: $black;
+        opacity: 0.8;
+    }
+    &::-ms-input-placeholder {
+        color: $black;
+    }
+}
+
+button {
+    cursor: pointer;
+    background-color: rgba($color: $white, $alpha: 0.7);
+    width: auto;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    padding: 0 10px;
+    @include bg-transition();
+}
+
+button.active {
+    background-color: rgba($color: $variant, $alpha: 0.5) !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-small {
+    font-size: 14px;
+}
+
+.text-large {
+    font-size: 18px;
+}
+
+.error {
+    color: rgb(226, 50, 50);
+}
+
+.padding {
+    padding: 1rem 2rem;
+}
+
+.radius {
+    border-radius: 3px;
 }
 
 .main-container {
@@ -215,17 +340,87 @@ button {
         }
     }
 
-    .page-wrapper {
-        z-index: 1;
-        width: 100%;
+    nav {
+        height: 55px;
+        padding: 0 2rem;
+        column-gap: 2.5rem;
+
+        a.logo {
+            margin-right: auto;
+            color: $variant;
+            font-size: 0.6rem;
+            text-decoration: none;
+            column-gap: 0.5rem;
+            @include text-transition();
+            img {
+                width: 25px;
+                height: 25px;
+                background-color: $variant;
+            }
+        }
+
+        .theme {
+            position: relative;
+            left: 0;
+            bottom: 0;
+        }
+
+        .nav-list {
+            li {
+                height: 100%;
+                a {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    font-weight: 600;
+                    @include text-transition();
+                    &:hover {
+                        border-bottom: 1px solid $variant;
+                    }
+                }
+            }
+            li.active {
+                border-bottom: 1px solid $variant;
+                &:hover {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    .logo {
+        img {
+            width: 50px;
+            height: 50px;
+            background-color: $variant;
+        }
+    }
+
+    .content-wrapper {
         height: 100%;
         margin: 0 auto;
-        position: relative;
-        column-gap: 0.1rem;
+        max-width: 1150px;
 
-        .content-wrapper {
+        .content {
+            width: calc(100% - 350px);
             height: 100%;
-            @include flex(column, $justify-content: center, $align-items: center);
+            display: flex;
+            padding: 50px 25px;
+            margin-bottom: 5rem;
+        }
+
+        .sidebar {
+            width: 350px;
+            height: calc(100vh - 50px);
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            row-gap: 1rem;
+            position: sticky;
+            top: 50px;
         }
     }
 
@@ -234,7 +429,6 @@ button {
         position: fixed;
         bottom: 15px;
         left: 49vw;
-        display: flex;
         font-size: 1.5rem;
         text-align: center;
     }
@@ -267,11 +461,11 @@ button {
 
         .modal-content {
             position: absolute;
-            background: $light;
+            background: $white;
             min-width: 400px;
             padding: 1.3rem 2rem;
             z-index: 9;
-            border: 1px solid rgba($flavour-color, 0.5);
+            border: 1px solid rgba($variant, 0.5);
 
             .heading {
                 width: 90%;
@@ -284,7 +478,7 @@ button {
                 margin-bottom: 1rem;
                 svg {
                     font-size: 1.5rem;
-                    color: $light;
+                    color: $white;
                     opacity: 0.6;
                     &:hover {
                         opacity: 1;

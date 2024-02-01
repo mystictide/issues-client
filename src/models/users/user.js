@@ -8,15 +8,19 @@ export class User {
   constructor(Entity) {
     /**
      * @property {number|null} ID
-     * @property {string|null} Username
+     * @property {Company|null} Company
+     * @property {string|null} FirstName
+     * @property {string|null} LastName
      * @property {string|null} Email
-     * @property {number} AuthType
+     * @property {int} Role
      * @property {string|null} Token
      */
     this.ID = Entity.ID ?? null;
-    this.Username = Entity.Username ?? null;
+    this.Company = Entity.Company ?? null;
+    this.FirstName = Entity.FirstName ?? null;
+    this.LastName = Entity.LastName ?? null;
     this.Email = Entity.Email ?? null;
-    this.AuthType = Entity.AuthType ?? 1;
+    this.Role = Entity.Role ?? 1;
     this.Token = Entity.Token ?? null;
   }
 }

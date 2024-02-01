@@ -10,7 +10,7 @@ export default function SetTheme({ theme }) {
   };
 
   return (
-    <>
+    <div className="theme flex-row">
       {theme === "dark" ? (
         <span className="interactive" onClick={() => handleTheme("light")}>
           <MdLightMode />
@@ -20,6 +20,6 @@ export default function SetTheme({ theme }) {
           <MdDarkMode />
         </span>
       )}
-    </>
+    </div>
   );
 }

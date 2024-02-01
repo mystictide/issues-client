@@ -1,12 +1,12 @@
-import "@/assets/css/main.scss";
 import { readCookie } from "@/assets/js/helpers";
 import { cookies } from "next/headers";
+import "../assets/css/main.scss";
 
 export const metadata = {
   metadataBase: new URL("https://issues.herrguller.cc"),
   title: {
-    default: "issues",
-    template: "%s / issues",
+    default: "ISSUES",
+    template: "%s / ISSUES",
   },
   description: "Project Management",
   keywords: "project management, issue tracker, bug tracker",
@@ -24,9 +24,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body data-theme={theme} suppressHydrationWarning={true}>
-        {children}
-      </body>
-    </html>
+    <body data-theme={theme} suppressHydrationWarning={true}>
+      {children}
+    </body>
+  </html>
   );
 }

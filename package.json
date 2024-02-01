@@ -18,6 +18,7 @@
     "react-toastify": "^10.0.4"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.17",
     "docdash": "^2.0.2",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
