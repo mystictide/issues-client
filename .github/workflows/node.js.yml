@@ -27,9 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-      working-directory: ./client
     - run: npm run build
-      working-directory: ./client
     - run: ls
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
@@ -39,7 +37,7 @@ jobs:
     - name: Adding Known Hosts
       run: ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
     - name: Deploy with rsync
-      run: rsync -avz /home/runner/work/client/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/var/www/issues.herrguller.cc/
+      run: rsync -avz /home/runner/work/issues-client/issues-client/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/var/www/issues.herrguller.cc/
     - name: Restart the service
       uses: appleboy/ssh-action@master
       with:
