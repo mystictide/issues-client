@@ -1,4 +1,5 @@
 "use client";
+
 import { adminLogin, login } from "@/actions/auth/actions";
 import Logo from "@/assets/img/issues.svg";
 import Image from "next/image";
@@ -24,10 +25,11 @@ export default function Login({ setRegState }) {
   const onSubmit = async (e) => {
     e.preventDefault();
     const userData = { email, password };
+    let res;
     if (userLogin) {
-      let res = await login(userData);
+      res = await login(userData);
     } else {
-      let res = await adminLogin(userData);
+      res = await adminLogin(userData);
     }
     toast(res);
   };

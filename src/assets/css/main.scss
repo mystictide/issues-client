@@ -141,6 +141,10 @@ body[data-theme="dark"] {
     height: 100%;
 }
 
+.relative {
+    position: relative;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -158,9 +162,19 @@ body[data-theme="dark"] {
     align-items: center;
 }
 
+.flex-start {
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .flex-end {
     justify-content: flex-end;
     align-items: center;
+}
+
+.half-gap {
+    row-gap: 0.4rem;
+    column-gap: 0.4rem;
 }
 
 .self-start {
@@ -171,10 +185,29 @@ body[data-theme="dark"] {
     align-self: flex-end;
 }
 
+a {
+    text-decoration: none;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+ul.list {
+    row-gap: 0;
+    a {
+        position: relative;
+        color: $white;
+        text-decoration: none;
+        background-color: rgba($color: $dark, $alpha: 0.8);
+        @include bg-transition();
+
+        svg {
+            font-size: 1rem;
+        }
+    }
 }
 
 span.function {
@@ -187,7 +220,10 @@ span.function {
 .interactive {
     padding: 3px;
     border-radius: 33px;
+    @include text-transition();
+
     svg {
+        height: 100%;
         transition: all 0.35s ease;
         -webkit-bg-transition: all 0.35s ease;
         cursor: pointer;
@@ -219,6 +255,24 @@ input {
     }
 }
 
+.form-header{
+    height: 55px;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    left: 2px;
+    padding: 0;
+    width: 20px;
+}
+
+.checkbox {
+   cursor: pointer;
+   padding: 0 2rem;
+}
+
 button {
     cursor: pointer;
     background-color: rgba($color: $white, $alpha: 0.7);
@@ -233,6 +287,22 @@ button {
 
 button.active {
     background-color: rgba($color: $variant, $alpha: 0.5) !important;
+}
+
+button.icon {
+    background: none !important;
+    font-size: 1.3rem;
+    text-align: center;
+    @include text-transition();
+    svg {
+        height: 100%;
+    }
+    &:hover {
+        svg {
+            @include text-transition();
+            color: $variant;
+        }
+    }
 }
 
 .text-center {
@@ -253,6 +323,14 @@ button.active {
 
 .padding {
     padding: 1rem 2rem;
+}
+
+.dropdown {
+    z-index: 1;
+    position: absolute;
+    top: 45px;
+    left: -85px;
+    width: 220px;
 }
 
 .radius {
@@ -343,48 +421,52 @@ button.active {
     nav {
         height: 55px;
         padding: 0 2rem;
-        column-gap: 2.5rem;
+        column-gap: 1rem;
 
-        a.logo {
-            margin-right: auto;
-            color: $variant;
-            font-size: 0.6rem;
-            text-decoration: none;
-            column-gap: 0.5rem;
-            @include text-transition();
-            img {
-                width: 25px;
-                height: 25px;
-                background-color: $variant;
-            }
-        }
-
-        .theme {
-            position: relative;
-            left: 0;
-            bottom: 0;
-        }
-
-        .nav-list {
-            li {
-                height: 100%;
-                a {
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    text-decoration: none;
-                    font-weight: 600;
-                    @include text-transition();
-                    &:hover {
-                        border-bottom: 1px solid $variant;
-                    }
+        .navbar {
+            max-width: 1450px;
+            a.logo {
+                margin-right: auto;
+                color: $variant;
+                font-size: 0.6rem;
+                text-decoration: none;
+                column-gap: 0.5rem;
+                @include text-transition();
+                img {
+                    width: 25px;
+                    height: 25px;
+                    background-color: $variant;
                 }
             }
-            li.active {
-                border-bottom: 1px solid $variant;
-                &:hover {
-                    border-bottom: none;
+
+            .theme {
+                position: relative;
+                left: 0;
+                bottom: 0;
+            }
+
+            .nav-list {
+                margin-right: 2rem;
+                li {
+                    height: 100%;
+                    a {
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-decoration: none;
+                        font-weight: 600;
+                        @include text-transition();
+                        &:hover {
+                            border-bottom: 1px solid $variant;
+                        }
+                    }
+                }
+                li.active {
+                    border-bottom: 1px solid $variant;
+                    &:hover {
+                        border-bottom: none;
+                    }
                 }
             }
         }
@@ -401,24 +483,31 @@ button.active {
     .content-wrapper {
         height: 100%;
         margin: 0 auto;
-        max-width: 1150px;
+        max-width: 1450px;
 
         .content {
             width: calc(100% - 350px);
             height: 100%;
             display: flex;
-            padding: 50px 25px;
             margin-bottom: 5rem;
+        }
+
+        .manage {
+            position: relative;
+            font-size: 0.65rem;
+            background-color: rgba($color: $variant, $alpha: 0.1);
+            @include bg-transition();
+            svg {
+                color: $variant;
+                position: absolute;
+                left: 25%;
+                font-size: 1.5rem;
+            }
         }
 
         .sidebar {
             width: 350px;
             height: calc(100vh - 50px);
-            padding: 20px 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            row-gap: 1rem;
             position: sticky;
             top: 50px;
         }
