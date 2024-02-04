@@ -74,6 +74,9 @@ body {
     .bg {
         background-color: darken($color: $white, $amount: 10);
     }
+    .tb-body {
+        background-color: darken($color: $white, $amount: 25);
+    }
     .Toastify__toast {
         background: $white !important;
     }
@@ -96,6 +99,9 @@ body[data-theme="dark"] {
 
     .bg {
         background-color: lighten($color: $dark, $amount: 10);
+    }
+    .tb-body {
+        background-color: lighten($color: $dark, $amount: 25);
     }
     .modal-content {
         background: $dark;
@@ -140,61 +146,53 @@ body[data-theme="dark"] {
 .h-full {
     height: 100%;
 }
-
 .relative {
     position: relative;
 }
-
 .flex-row {
     display: flex;
     flex-direction: row;
     column-gap: 1rem;
 }
-
 .flex-column {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
 }
-
 .flex-center {
     justify-content: center;
     align-items: center;
 }
-
 .flex-start {
     justify-content: flex-start;
     align-items: center;
 }
-
 .flex-end {
     justify-content: flex-end;
     align-items: center;
 }
-
+.flex-divide {
+    justify-content: space-between;
+    align-items: center;
+}
 .half-gap {
     row-gap: 0.4rem;
     column-gap: 0.4rem;
 }
-
 .self-start {
     align-self: flex-start;
 }
-
 .self-end {
     align-self: flex-end;
 }
-
 a {
     text-decoration: none;
 }
-
 ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-
 ul.list {
     row-gap: 0;
     a {
@@ -209,14 +207,12 @@ ul.list {
         }
     }
 }
-
 span.function {
     cursor: pointer;
     &:hover {
         text-decoration: underline;
     }
 }
-
 .interactive {
     padding: 3px;
     border-radius: 33px;
@@ -236,7 +232,6 @@ span.function {
         }
     }
 }
-
 input {
     height: 35px;
     width: 100%;
@@ -249,13 +244,16 @@ input {
     &::placeholder {
         color: $black;
         opacity: 0.8;
+        font-size: 14px;
     }
     &::-ms-input-placeholder {
         color: $black;
+        opacity: 0.8;
+        font-size: 14px;
     }
 }
 
-.form-header{
+.form-header {
     height: 55px;
     width: 100%;
     padding: 0 2rem;
@@ -269,8 +267,8 @@ input[type="checkbox"] {
 }
 
 .checkbox {
-   cursor: pointer;
-   padding: 0 2rem;
+    cursor: pointer;
+    padding: 0 2rem;
 }
 
 button {
@@ -305,6 +303,11 @@ button.icon {
     }
 }
 
+button.large {
+    font-size: 17px;
+    height: 50px;
+}
+
 .text-center {
     text-align: center;
 }
@@ -329,8 +332,8 @@ button.icon {
     z-index: 1;
     position: absolute;
     top: 45px;
-    left: -85px;
-    width: 220px;
+    left: -62px;
+    width: 170px;
 }
 
 .radius {
@@ -490,6 +493,28 @@ button.icon {
             height: 100%;
             display: flex;
             margin-bottom: 5rem;
+            padding: 2rem;
+
+            .content-main {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+
+        .table {
+            row-gap: 0.3rem;
+            .tb-75 {
+                width: 85%;
+            }
+            .tb-link {
+                @include bg-transition();
+            }
+            .functions {
+                width: 15%;
+                svg {
+                    font-size: 1.3rem;
+                }
+            }
         }
 
         .manage {
@@ -510,6 +535,18 @@ button.icon {
             height: calc(100vh - 50px);
             position: sticky;
             top: 50px;
+        }
+    }
+
+    .pager {
+        height: 25px;
+        ul {
+            column-gap: 0.1rem;
+            a {
+                padding: 0.5rem 0.8rem;
+                font-size: 14px;
+                @include bg-transition();
+            }
         }
     }
 

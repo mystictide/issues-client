@@ -1,30 +1,45 @@
 "use client";
 
+import { manageRole } from "@/actions/manage/actions";
 import { RoleClass } from "@/models/users/role";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function RoleManager({ admin, user, data }) {
+  const router = useRouter();
+  const [name, setName] = useState(data?.Name ?? "");
   const [selected, setSelected] = useState(data?.Attributes ?? []);
-  let Role = new RoleClass(data);
-
-  const onChange = (e) => {
-    Role.Name = e.target.value;
-  };
+  let Role = new RoleClass();
 
   const handleCheck = (e) => {
-    let currentList = selected;
-    if (!currentList.includes(e.target.value)) {
-      currentList.push(e.target.value);
+    if (!selected.includes(e.target.value)) {
+      setSelected((prevState) => [...prevState, e.target.value]);
     } else {
-      currentList.splice(currentList.indexOf(e.target.value), 1);
+      setSelected((prevState) => prevState.filter((a) => e.target.value !== a));
     }
-    setSelected(currentList);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const reqData = { id: 0, companyid: 0, attributes };
-    toast(res);
+    if (name && selected.length > 0) {
+      Role.ID = data?.ID ?? 0;
+      Role.CompanyID = admin ? admin.ID : user?.CompanyID;
+      Role.Name = name;
+      Role.Attributes = selected;
+      const reqData = {
+        entity: JSON.stringify(Role),
+        token: admin?.Token ?? user?.Token,
+      };
+      let res = await manageRole(reqData);
+      if (res?.ID > 0) {
+        router.push("/settings/roles");
+      } else {
+        toast("Server error. Please try again.");
+      }
+    } else {
+      toast("Please fill all necessary fields before submitting.");
+    }
   };
 
   return (
@@ -33,16 +48,18 @@ export default function RoleManager({ admin, user, data }) {
         Creating a new Role
       </h2>
       <form className="flex-column" onSubmit={onSubmit}>
-        <section className="bg flex-column padding">
+        <section className="bg content-main flex-column padding">
+          <h4>Role name</h4>
           <input
             type="text"
             id="name"
             name="name"
-            value={Role.Name ?? ""}
-            placeholder="Role Name"
-            onChange={onChange}
+            defaultValue={name ?? ""}
+            placeholder="administrator, project manager, developer, tester..."
+            onChange={(e) => setName(e.target.value)}
             className="w-half"
           />
+          <h4>Level of access</h4>
           {Role?.Attributes?.map((attr) => (
             <section key={attr.ID} className="flex-row flex-start">
               <label className="relative checkbox flex-row flex-center no-select">
@@ -51,13 +68,22 @@ export default function RoleManager({ admin, user, data }) {
                   type="checkbox"
                   defaultValue={attr.ID}
                   onChange={handleCheck}
-                  defaultChecked={data?.Attributes?.includes(attr.ID) ? true : false}
+                  defaultChecked={
+                    data?.Attributes?.includes(attr.ID) ? true : false
+                  }
                 />
               </label>
             </section>
           ))}
+          {selected.length < 1 ? (
+            <label className="text-small error">
+              At least one access level must be selected
+            </label>
+          ) : (
+            ""
+          )}
         </section>
-        <button type="submit" className="bg">
+        <button type="submit" className="bg large">
           Submit
         </button>
       </form>

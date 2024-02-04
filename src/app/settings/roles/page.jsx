@@ -4,7 +4,8 @@ import { filterRoles } from "@/actions/filters/actions";
 import Empty from "@/assets/img/empty.png";
 import { buildFilter, readCookie } from "@/assets/js/helpers";
 import Filter from "@/components/server/layout/filters/projectsFilter";
-import Header from "@/components/server/layout/header";
+import RolesList from "@/components/server/layout/lists/rolesList";
+import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -46,9 +47,11 @@ export default async function Roles({ searchParams }) {
           <Filter />
         </section>
         <div className="content flex-column">
-          <div className="padding">
-            {roles?.data ? (
-              ""
+          <div className="flex-column">
+            {roles?.data?.length > 0 ? (
+              <>
+                <RolesList roles={roles} />
+              </>
             ) : (
               <div className="flex-column flex-center">
                 <Image alt="nothing found" src={Empty}></Image>

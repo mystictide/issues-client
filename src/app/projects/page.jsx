@@ -2,8 +2,8 @@
 
 import { readCookie } from "@/assets/js/helpers";
 import Filter from "@/components/server/layout/filters/projectsFilter";
-import Header from "@/components/server/layout/header";
 import Menu from "@/components/server/layout/menus/projectsMenu";
+import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 

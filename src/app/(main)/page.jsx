@@ -1,7 +1,7 @@
 "use server";
 
 import { readCookie } from "@/assets/js/helpers";
-import Header from "@/components/server/layout/header";
+import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 

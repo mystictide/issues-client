@@ -27,7 +27,7 @@ export default function Settings() {
                   aria-label="manage roles"
                   href="/settings/roles"
                 >
-                  <TbHierarchy3 /> Manage Roles
+                  <TbHierarchy3 /> Role List
                 </a>
               </li>
               <li className="h-full w-full">
@@ -36,7 +36,7 @@ export default function Settings() {
                   aria-label="manage users"
                   href="/settings/users"
                 >
-                  <FaUsers /> Manage Users
+                  <FaUsers /> User List
                 </a>
               </li>
             </ul>

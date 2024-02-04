@@ -15,7 +15,6 @@ export class RoleClass {
       this.ID = Entity?.ID ?? 0;
       this.CompanyID = Entity?.CompanyID ?? 0;
       this.Name = Entity?.Name ?? null;
-      this.LastName = Entity?.LastName ?? null;
       this.Attributes = Entity?.Attributes ?? RoleAttributes;
     }
   }
@@ -28,35 +27,23 @@ export const RoleAttributes = [
     },
     {
       ID: 2,
-      Value: "Can manage users, projects and system settings",
-    },
-    {
-      ID: 3,
       Value: "Can assign users to projects and issues",
     },
     {
-      ID: 4,
+      ID: 3,
       Value: "Can create, edit and delete projects and issues",
     },
     {
-      ID: 5,
+      ID: 4,
       Value: "Can assign users to issues",
     },
     {
-      ID: 6,
+      ID: 5,
       Value: "Can create, edit and close issues",
     },
     {
-      ID: 7,
+      ID: 6,
       Value: "Can view all projects",
-    },
-    {
-      ID: 8,
-      Value: "Can view all issues",
-    },
-    {
-      ID: 9,
-      Value: "Can view all users",
-    },
+    }
   ];
   
