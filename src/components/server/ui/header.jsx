@@ -61,7 +61,7 @@ export default async function Header({ page }) {
         <section className="flex-row half-gap" style={{ position: "relative" }}>
           <Settings />
           <Logout />
-          <SetTheme theme={settings.theme} />
+          <SetTheme theme={settings?.theme ?? "light"} />
         </section>
       </div>
     </nav>

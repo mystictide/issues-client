@@ -3,7 +3,6 @@
 import { getRole } from "@/actions/fetch/actions";
 import { readCookie } from "@/assets/js/helpers";
 import RoleManager from "@/components/client/managers/roleManager";
-import Filter from "@/components/server/layout/filters/projectsFilter";
 import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -28,8 +27,8 @@ export default async function ManageRole({ params }) {
   return (
     <>
       <Header />
-      <div className="content-wrapper flex-row">
-        <Filter />
+      <div className="content-wrapper flex-row v-center">
+        {/* <Filter /> */}
         <div className="content flex-column">
           <div className="flex-column">
             <RoleManager admin={admin} user={user} data={role} />

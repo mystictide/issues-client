@@ -1,32 +1,35 @@
-"use server";
+"use client";
 
-import { FaUsers } from "react-icons/fa";
-import { TbHierarchy3 } from "react-icons/tb";
+import { useRouter } from "next/navigation";
 
-export default async function ProjectsFilter() {
+export default function ProjectsFilter({ filter }) {
+  const router = useRouter();
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    router.push(`/settings/roles/?keyword=${e.target.keyword.value}`);
+  };
+
   return (
-    <div className="bg flex-column sidebar">
+    <div className="bg flex-column sidebar filter">
       <section className="w-full h-full">
-        <ul className="list flex-column flex-center">
-          <li className="h-full w-full">
-            <a
-              className="flex-row flex-center h-full w-full padding"
-              aria-label="Projects"
-              href="/projects"
-            >
-              <TbHierarchy3 /> Manage Roles
-            </a>
-          </li>
-          <li className="h-full w-full">
-            <a
-              className="flex-row flex-center h-full w-full padding"
-              aria-label="Projects"
-              href="/projects"
-            >
-             <FaUsers /> Manage Users
-            </a>
-          </li>
-        </ul>
+        <h5 className="tb-body text-center padding no-select">Search & Filter</h5>
+        <form className="flex-column" onSubmit={onSubmit}>
+          <input
+            type="text"
+            id="keyword"
+            name="keyword"
+            defaultValue={filter.keyword ?? ""}
+            placeholder="...search by name"
+          />
+          <button
+            aria-label="search"
+            type="submit"
+            className="flex-row flex-center h-full w-full padding"
+          >
+            Search
+          </button>
+        </form>
       </section>
     </div>
   );

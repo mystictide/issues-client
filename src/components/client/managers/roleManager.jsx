@@ -4,6 +4,7 @@ import { manageRole } from "@/actions/manage/actions";
 import { RoleClass } from "@/models/users/role";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { TiArrowBack } from "react-icons/ti";
 import { toast } from "react-toastify";
 
 export default function RoleManager({ admin, user, data }) {
@@ -44,6 +45,14 @@ export default function RoleManager({ admin, user, data }) {
 
   return (
     <>
+      <a
+        className="interactive flex-row flex-center flex-start"
+        aria-label="go back"
+        href="/settings/roles/"
+      >
+        <TiArrowBack />
+        Go back
+      </a>
       <h2 className="bg form-header flex-row flex-center flex-start">
         Creating a new Role
       </h2>
