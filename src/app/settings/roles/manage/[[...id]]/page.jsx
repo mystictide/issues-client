@@ -28,7 +28,6 @@ export default async function ManageRole({ params }) {
     <>
       <Header />
       <div className="content-wrapper flex-row v-center">
-        {/* <Filter /> */}
         <div className="content flex-column">
           <div className="flex-column">
             <RoleManager admin={admin} user={user} data={role} />

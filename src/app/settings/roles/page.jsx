@@ -3,7 +3,7 @@
 import { filterRoles } from "@/actions/filters/actions";
 import Empty from "@/assets/img/empty.png";
 import { buildFilter, readCookie } from "@/assets/js/helpers";
-import ProjectsFilter from "@/components/server/layout/filters/projectsFilter";
+import RolesFilter from "@/components/server/layout/filters/rolesFilter";
 import RolesList from "@/components/server/layout/lists/rolesList";
 import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
@@ -44,7 +44,7 @@ export default async function Roles({ searchParams }) {
               <h1>New Role</h1>
             </a>
           </div>
-          <ProjectsFilter filter={filter} />
+          <RolesFilter filter={filter} />
         </section>
         <div className="content flex-column">
           <div className="flex-column">

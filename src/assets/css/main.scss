@@ -185,12 +185,15 @@ body[data-theme="dark"] {
 .self-start {
     align-self: flex-start;
 }
+.self-center {
+    align-self: center;
+}
 .self-end {
     align-self: flex-end;
 }
 a {
     text-decoration: none;
-    svg{
+    svg {
         font-size: 1.3rem;
     }
 }
@@ -259,7 +262,20 @@ input {
         font-size: 14px;
     }
 }
-
+select {
+    cursor: pointer;
+    height: 35px;
+    width: 100%;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: $dark;
+    @include bg-transition();
+    option {
+        cursor: pointer;
+    }
+}
 .form-header {
     height: 55px;
     width: 100%;

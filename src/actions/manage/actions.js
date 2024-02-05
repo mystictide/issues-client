@@ -42,7 +42,7 @@ export async function manageUser(reqData) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + reqData.token,
       },
-      data: JSON.stringify(reqData.User),
+      data: reqData.entity,
     };
     var result = await axios(config)
       .then(function (response) {
@@ -55,6 +55,7 @@ export async function manageUser(reqData) {
           throw "Server error.";
         }
       });
+    console.log(result);
     return result;
   } catch (error) {
     return error;

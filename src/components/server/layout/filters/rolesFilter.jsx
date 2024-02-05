@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-export default function ProjectsFilter({ filter }) {
+export default function RolesFilter({ filter }) {
   const router = useRouter();
 
   const onSubmit = async (e) => {

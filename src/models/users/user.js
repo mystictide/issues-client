@@ -1,7 +1,7 @@
 /**
  * User class for the client
  */
-export class User {
+export class UserClass {
   /**
    * @param {Object} Entity
    */
@@ -15,13 +15,13 @@ export class User {
      * @property {int} Role
      * @property {string|null} Token
      */
-    this.ID = Entity.ID ?? null;
-    this.Company = Entity.Company ?? null;
-    this.FirstName = Entity.FirstName ?? null;
-    this.LastName = Entity.LastName ?? null;
-    this.Email = Entity.Email ?? null;
-    this.Role = Entity.Role ?? 1;
-    this.Token = Entity.Token ?? null;
+    this.ID = Entity?.ID ?? 0;
+    this.Company = Entity?.Company ?? 0;
+    this.FirstName = Entity?.FirstName ?? null;
+    this.LastName = Entity?.LastName ?? null;
+    this.Email = Entity?.Email ?? null;
+    this.Role = Entity?.Role ?? 0;
+    this.Token = Entity?.Token ?? null;
   }
 }
 
@@ -34,10 +34,10 @@ export class ServerUser {
    */
   constructor(Entity) {
     /**
-     * @property {User|null} User
+     * @property {UserClass|null} User
      * @property {string|null} Password
      */
-    this.User = Entity.User ?? null;
-    this.Password = Entity.Password ?? null;
+    this.User = Entity?.User ?? null;
+    this.Password = Entity?.Password ?? null;
   }
 }
