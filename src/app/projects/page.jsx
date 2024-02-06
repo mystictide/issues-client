@@ -1,7 +1,6 @@
 "use server";
 
 import { readCookie } from "@/assets/js/helpers";
-import Menu from "@/components/server/layout/menus/projectsMenu";
 import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -21,7 +20,6 @@ export default async function Projects() {
       <div className="content-wrapper flex-row">
         {/* <Filter /> */}
         <div className="content flex-column">
-          <Menu />
           <div className="padding">main</div>
         </div>
       </div>
