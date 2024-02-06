@@ -32,12 +32,19 @@ export default async function ManageUser({ params }) {
       <div className="content-wrapper flex-row v-center">
         <div className="content flex-column">
           <div className="flex-column">
-            <UserManager
-              admin={admin}
-              user={user}
-              data={userData}
-              roles={roles}
-            />
+            {roles[0]?.ID ? (
+              <UserManager
+                admin={admin}
+                user={user}
+                data={userData}
+                roles={roles}
+              />
+            ) : (
+              <div className="flex-column flex-center">
+                <h1>404</h1>
+                <h3>Could not connect the server. Please try again.</h3>
+              </div>
+            )}
           </div>
         </div>
       </div>

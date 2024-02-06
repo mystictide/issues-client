@@ -60,3 +60,59 @@ export async function filterUsers(reqData) {
     return error;
   }
 }
+
+export async function filterProjects(reqData) {
+  try {
+    var config = {
+      method: "post",
+      url: API_URL + "filter/projects",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + reqData.token,
+      },
+      data: JSON.stringify(reqData),
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function filterIssues(reqData) {
+  try {
+    var config = {
+      method: "post",
+      url: API_URL + "filter/issues",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + reqData.token,
+      },
+      data: JSON.stringify(reqData),
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}

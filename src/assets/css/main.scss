@@ -124,6 +124,59 @@ body[data-theme="dark"] {
             color: $white;
         }
     }
+    textarea {
+        color: $white;
+        background-color: $dark;
+        @include bg-transition();
+        &::placeholder {
+            color: $white;
+            opacity: 0.8;
+        }
+        &::-ms-input-placeholder {
+            color: $white;
+        }
+    }
+    select {
+        color: $white;
+        background-color: $dark;
+        @include bg-transition();
+        &::placeholder {
+            color: $white;
+            opacity: 0.8;
+        }
+        &::-ms-input-placeholder {
+            color: $white;
+        }
+        option {
+            background-color: $dark;
+        }
+    }
+    .r-select {
+        color: $white;
+        .r-select__control {
+            color: $white;
+            background-color: $dark;
+            .r-select__value-container {
+                background-color: $dark;
+            }
+        }
+        .r-select__menu {
+            background-color: $dark;
+            .r-select__menu-list {
+                background-color: $dark;
+                .r-select__option {
+                    background-color: $dark;
+                    &:hover {
+                        cursor: pointer;
+                        background-color: lighten($color: $dark, $amount: 10);
+                    }
+                }
+            }
+        }
+        .r-select__multi-value__remove {
+            color: $dark;
+        }
+    }
     button {
         color: $white;
         background-color: $dark;
@@ -262,6 +315,28 @@ input {
         font-size: 14px;
     }
 }
+textarea {
+    min-height: 70px;
+    max-height: 250px;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: $dark;
+    @include bg-transition();
+    &::placeholder {
+        color: $black;
+        opacity: 0.8;
+        font-size: 14px;
+    }
+    &::-ms-input-placeholder {
+        color: $black;
+        opacity: 0.8;
+        font-size: 14px;
+    }
+}
 select {
     cursor: pointer;
     height: 35px;
@@ -272,8 +347,33 @@ select {
     border-radius: 3px;
     color: $dark;
     @include bg-transition();
-    option {
+}
+.r-select {
+    height: 38px;
+    width: 100%;
+    border-radius: 3px;
+    color: $dark;
+    .r-select__control {
+        height: 38px;
+        outline: none;
+        border: none;
+    }
+    .r-select__value-container {
         cursor: pointer;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+        .r-select__placeholder {
+            height: 38px;
+            display: flex;
+            align-items: center;
+        }
+        .r-select__input-container {
+            height: 38px;
+            display: flex;
+            align-items: center;
+        }
     }
 }
 .form-header {
@@ -527,7 +627,22 @@ button.large {
 
         .table {
             row-gap: 0.3rem;
-            .tb-75 {
+            .tb-20 {
+                width: 20%;
+            }
+            .tb-25 {
+                width: 25%;
+            }
+            .tb-40 {
+                width: 40%;
+            }
+            .tb-60 {
+                width: 60%;
+            }
+            .tb-70 {
+                width: 70%;
+            }
+            .tb-85 {
                 width: 85%;
             }
             .tb-link {
@@ -544,13 +659,12 @@ button.large {
         .manage {
             position: relative;
             font-size: 0.65rem;
+            column-gap: 0.4rem;
             background-color: rgba($color: $variant, $alpha: 0.1);
             @include bg-transition();
             svg {
                 color: $variant;
-                position: absolute;
-                left: 25%;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
         }
 

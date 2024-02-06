@@ -1,13 +1,13 @@
 "use server";
 
-import { getRole } from "@/actions/fetch/actions";
+import { getIssue, getProjects, getUsers } from "@/actions/fetch/actions";
 import { readCookie } from "@/assets/js/helpers";
-import RoleManager from "@/components/client/managers/roleManager";
+import IssueManager from "@/components/client/managers/issueManager";
 import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function ManageRole({ params }) {
+export default async function ManageIssue({ params }) {
   const cookieStore = cookies();
   const admin = readCookie(cookieStore, "admin");
   const user = readCookie(cookieStore, "auth");
@@ -16,13 +16,16 @@ export default async function ManageRole({ params }) {
     redirect("/account");
   }
 
-  let role;
+  let issue;
   if (params?.id && params?.id > 0) {
-    role = await getRole({
+    issue = await getIssue({
       ID: params?.id,
       token: admin?.Token ?? user?.Token,
     });
   }
+
+  const users = await getUsers(admin?.Token ?? user?.Token);
+  const projects = await getProjects(admin?.Token ?? user?.Token);
 
   return (
     <>
@@ -30,8 +33,14 @@ export default async function ManageRole({ params }) {
       <div className="content-wrapper flex-row v-center">
         <div className="content flex-column">
           <div className="flex-column">
-            {role[0]?.ID ? (
-              <RoleManager admin={admin} user={user} data={role} />
+            {users[0]?.ID && projects[0]?.ID ? (
+              <IssueManager
+                admin={admin}
+                user={user}
+                data={issue}
+                users={users}
+                projects={projects}
+              />
             ) : (
               <div className="flex-column flex-center">
                 <h1>404</h1>

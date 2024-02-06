@@ -53,7 +53,7 @@ export default function UserManager({ admin, user, data, roles }) {
 
   useEffect(() => {
     const validateMail = setTimeout(async () => {
-      if (email.length > 0 && email !== data.Email) {
+      if (email.length > 0 && email !== data?.Email) {
         let reqData = { email, company: false };
         let res = await checkExistingEmail(reqData);
         setEmailExists(res);
