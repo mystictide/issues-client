@@ -26,11 +26,15 @@ export async function addUser(reqData) {
         return response.data;
       })
       .catch(function (error) {
-        return error;
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
       });
     return result;
   } catch (error) {
-    return true;
+    return error;
   }
 }
 
@@ -53,11 +57,15 @@ export async function adminRegister(reqData) {
         return response.data;
       })
       .catch(function (error) {
-        return error;
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
       });
     return result;
   } catch (error) {
-    return true;
+    return error;
   }
 }
 
@@ -80,11 +88,15 @@ export async function adminLogin(reqData) {
         return response.data;
       })
       .catch(function (error) {
-        return error;
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
       });
     return result;
   } catch (error) {
-    return true;
+    return error;
   }
 }
 
@@ -106,11 +118,15 @@ export async function login(reqData) {
         return response.data;
       })
       .catch(function (error) {
-        return error;
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
       });
     return result;
   } catch (error) {
-    return true;
+    return error;
   }
 }
 
@@ -135,10 +151,14 @@ export async function checkExistingEmail(reqData) {
         return response.data;
       })
       .catch(function (error) {
-        return error;
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
       });
     return result;
   } catch (error) {
-    return true;
+    return error;
   }
 }

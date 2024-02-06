@@ -24,9 +24,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-    <body data-theme={theme} suppressHydrationWarning={true}>
-      {children}
-    </body>
-  </html>
+      <body data-theme={theme} suppressHydrationWarning={true}>
+        {children}
+      </body>
+    </html>
   );
 }

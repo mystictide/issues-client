@@ -7,7 +7,7 @@ import { BarLoader } from "react-spinners";
 
 export default function Register({ setRegState }) {
   const [formData, setFormData] = useState({
-    companyName: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -16,18 +16,19 @@ export default function Register({ setRegState }) {
     vPassword: true,
   });
   const [emailExists, setEmailExists] = useState(false);
-  const { companyName, email, password } = formData;
+  const { name, email, password } = formData;
   const { vPassword } = formValidation;
 
   useEffect(() => {
     const validateMail = setTimeout(async () => {
       if (email.length > 0) {
-        let res = await checkExistingEmail(email);
+        let reqData = {email, company: true}
+        let res = await checkExistingEmail(reqData);
         setEmailExists(res);
       }
     }, 2000);
     return () => clearTimeout(validateMail);
-  }, [email, emailExists, setEmailExists]);
+  }, [email, setEmailExists]);
 
   useEffect(() => {
     const validatePassword = setTimeout(() => {
@@ -48,8 +49,8 @@ export default function Register({ setRegState }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const userData = { companyName, email, password };
-    if (!vPassword && companyName.length > 0 && !emailExists) {
+    const userData = { id: 0, name, email, password };
+    if (!vPassword && name.length > 0 && !emailExists) {
       await adminRegister(userData);
     }
   };
@@ -65,9 +66,9 @@ export default function Register({ setRegState }) {
         <form className="flex-column" onSubmit={onSubmit}>
           <input
             type="text"
-            id="companyName"
-            name="companyName"
-            value={companyName}
+            id="name"
+            name="name"
+            value={name}
             placeholder="Company Name"
             onChange={(e) =>
               setFormData((prevState) => ({
@@ -76,7 +77,7 @@ export default function Register({ setRegState }) {
               }))
             }
           />
-          {companyName.length < 1 ? (
+          {name.length < 1 ? (
             <label className="text-small error">
               Company name can not be empty
             </label>
@@ -125,7 +126,7 @@ export default function Register({ setRegState }) {
           )}
           <div className="flex-column">
             {vPassword ||
-            companyname.length < 1 ||
+            name.length < 1 ||
             emailExists ? (
               <BarLoader
                 color="#74aa9f"

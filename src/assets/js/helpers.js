@@ -55,3 +55,24 @@ export function getLocalStorage(key) {
   const ls = localStorage.getItem(key);
   return ls !== null ? JSON.parse(ls) : null;
 }
+
+export function buildFilter(filterData) {
+  let filter = {
+    id: filterData.id ? filterData.id : 0,
+    keyword: filterData.keyword ? filterData.keyword : null,
+    page: filterData.page ?? 1,
+    sortby: filterData.sortby ?? "desc",
+    token: filterData.token,
+  };
+  return filter;
+}
+
+export function buildFilterURL(params) {
+  let url = "";
+  if (params) {
+    url += params.page ? `?page=${params.page}` : "?page=1";
+    url += params.keyword ? `&keyword=${params.keyword}` : "&keyword=";
+    url += params.sortby ? `&sortby=${params.sortby}` : "&sortby=";
+  }
+  return url;
+}
