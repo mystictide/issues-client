@@ -30,14 +30,7 @@ export default async function ManageRole({ params }) {
       <div className="content-wrapper flex-row v-center">
         <div className="content flex-column">
           <div className="flex-column">
-            {role[0]?.ID ? (
-              <RoleManager admin={admin} user={user} data={role} />
-            ) : (
-              <div className="flex-column flex-center">
-                <h1>404</h1>
-                <h3>Could not connect the server. Please try again.</h3>
-              </div>
-            )}
+            <RoleManager admin={admin} user={user} data={role} />
           </div>
         </div>
       </div>

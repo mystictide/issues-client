@@ -5,7 +5,7 @@ import Loading from "../loading";
 export default function RootLayout({ children }) {
   return (
     <Suspense fallback={<Loading />}>
-      <div className="main-container">
+      <div className="main-container h-full">
         <ToastUI />
         {children}
       </div>

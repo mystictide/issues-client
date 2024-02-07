@@ -45,19 +45,21 @@ export default function RoleManager({ admin, user, data }) {
 
   return (
     <>
-      <a
-        className="interactive flex-row flex-center flex-start"
-        aria-label="go back"
-        href="/settings/roles/"
-      >
-        <TiArrowBack />
-        Go back
-      </a>
-      <h2 className="bg form-header flex-row flex-center flex-start">
-        Creating a new Role
-      </h2>
-      <form className="flex-column" onSubmit={onSubmit}>
-        <section className="bg content-main flex-column padding">
+      <section className="flex-row relative">
+        <a
+          className="interactive h-full flex-row flex-center flex-start return"
+          aria-label="go back"
+          href="/settings/roles/"
+        >
+          <TiArrowBack />
+          Go back
+        </a>
+        <h2 className="bg form-header flex-row flex-center">
+          Creating a new Role
+        </h2>
+      </section>
+      <form className="flex-column w-full" onSubmit={onSubmit}>
+        <section className="bg content-main self-center w-half flex-column padding">
           <h4>Role name</h4>
           <input
             type="text"
@@ -66,7 +68,6 @@ export default function RoleManager({ admin, user, data }) {
             defaultValue={name ?? ""}
             placeholder="administrator, project manager, developer, tester..."
             onChange={(e) => setName(e.target.value)}
-            className="w-half"
           />
           <h4>Level of access</h4>
           {Role?.Attributes?.map((attr) => (

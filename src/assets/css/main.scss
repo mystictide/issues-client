@@ -465,7 +465,6 @@ button.large {
 }
 
 .main-container {
-    height: 100%;
     position: relative;
     overflow: hidden;
 
@@ -623,10 +622,34 @@ button.large {
                 padding-top: 2rem;
                 padding-bottom: 2rem;
             }
+            .return {
+                position: absolute;
+                left: 10px;
+            }
         }
 
         .table {
             row-gap: 0.3rem;
+            .tb-body {
+                li {
+                    height: 45px;
+                }
+            }
+            .type {
+                background-color: #294ab8;
+            }
+            .status {
+                background-color: #29b87d;
+            }
+            .priority {
+                background-color: #b89229;
+            }
+            .t-header {
+                height: 55px;
+                .title {
+                    padding: 0 1rem;
+                }
+            }
             .tb-20 {
                 width: 20%;
             }
@@ -646,6 +669,7 @@ button.large {
                 width: 85%;
             }
             .tb-link {
+                padding: 0 1rem;
                 @include bg-transition();
             }
             .functions {
@@ -670,7 +694,7 @@ button.large {
 
         .sidebar {
             width: 350px;
-            height: calc(100vh - 50px);
+            height: calc(100vh - 107px);
             position: sticky;
             top: 50px;
         }
@@ -690,6 +714,15 @@ button.large {
 
     .filter {
         input {
+            height: 50px;
+            &::placeholder {
+                font-size: 17px;
+            }
+            &::-ms-input-placeholder {
+                font-size: 17px;
+            }
+        }
+        select {
             height: 50px;
         }
     }

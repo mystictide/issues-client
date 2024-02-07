@@ -1,8 +1,9 @@
 "use server";
 
+import { getProjects } from "@/actions/fetch/actions";
 import { filterIssues } from "@/actions/filters/actions";
 import Empty from "@/assets/img/empty.png";
-import { buildFilter, readCookie } from "@/assets/js/helpers";
+import { buildIssueFilter, readCookie } from "@/assets/js/helpers";
 import IssuesFilter from "@/components/server/layout/filters/issuesFilter";
 import IssuesList from "@/components/server/layout/lists/issuesList";
 import Header from "@/components/server/ui/header";
@@ -20,14 +21,19 @@ export default async function Users({ searchParams }) {
     redirect("/account");
   }
 
-  const filter = buildFilter({
+  const filter = buildIssueFilter({
     keyword: searchParams.keyword,
+    projectid: searchParams.projectid,
+    type: searchParams.type,
+    status: searchParams.status,
+    priority: searchParams.priority,
     page: searchParams.page,
     sortby: searchParams.sortby,
     token: admin?.Token ?? user?.Token,
   });
 
-  const issues = await filterIssues(filter); 
+  const issues = await filterIssues(filter);
+  const projects = await getProjects(admin?.Token ?? user?.Token);
 
   return (
     <>
@@ -44,7 +50,7 @@ export default async function Users({ searchParams }) {
               <h1>New Issue</h1>
             </a>
           </div>
-          <IssuesFilter filter={filter} />
+          <IssuesFilter filter={filter} projects={projects} />
         </section>
         <div className="content flex-column">
           <div className="flex-column">

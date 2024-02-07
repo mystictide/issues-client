@@ -1,23 +1,28 @@
 "use server";
 
+import { Priorities, States, Types } from "@/models/main/issue";
 import { FaEdit } from "react-icons/fa";
 import Pager from "../../ui/pager";
 
 export default async function IssuesList({ issues }) {
+  let typesList = Types;
+  let statesList = States;
+  let priorityList = Priorities;
+
   return (
     <>
       <h2 className="bg form-header flex-row flex-center flex-start">
         List of Issues
       </h2>
-      <Pager data={issues} url={"/settings/issues"} />
+      <Pager data={issues} url={"/issues"} />
       <section className="table flex-column">
-        <div className="bg">
-          <ul className="flex-row w-full">
-            <li className="h-full tb-40 padding">Title</li>
-            <li className="h-full tb-20 padding">Type</li>
-            <li className="h-full tb-20 padding">Status</li>
-            <li className="h-full tb-20 padding">Priority</li>
-            <li className="h-full functions padding">Functions</li>
+        <div className="bg t-header h-full">
+          <ul className="flex-row h-full w-full">
+            <li className="h-full tb-40 flex-row flex-start title">Title</li>
+            <li className="h-full tb-20 flex-row flex-center">Type</li>
+            <li className="h-full tb-20 flex-row flex-center">Status</li>
+            <li className="h-full tb-20 flex-row flex-center">Priority</li>
+            <li className="h-full functions flex-row flex-start">Functions</li>
           </ul>
         </div>
         <div className="tb-body flex-column">
@@ -25,26 +30,29 @@ export default async function IssuesList({ issues }) {
             {issues.data?.map((issue) => (
               <li key={issue.ID} className="flex-row w-full">
                 <a
-                  className="flex-row flex-start padding tb-40 tb-link"
+                  className="flex-row flex-start tb-40 tb-link"
                   aria-label="manage issues"
                   href={`/issues/manage/${issue.ID}`}
                 >
                   {issue.Title}
                 </a>
-                <div className="flex-row flex-start no-select tb-20">
-                  {issue.Type}
+                <div className="flex-row flex-center no-select tb-20 type">
+                  {typesList.find((item) => item.ID === issue.Type).Value}
                 </div>
-                <div className="flex-row flex-start no-select tb-20">
-                  {issue.Status}
+                <div className="flex-row flex-center no-select tb-20 status">
+                  {statesList.find((item) => item.ID === issue.Status).Value}
                 </div>
-                <div className="flex-row flex-start no-select tb-20">
-                  {issue.Priority}
+                <div className="flex-row flex-center no-select tb-20 priority">
+                  {
+                    priorityList.find((item) => item.ID === issue.Priority)
+                      .Value
+                  }
                 </div>
                 <div className="flex-row flex-start functions">
                   <a
                     className="flex-row flex-center interactive"
                     aria-label="manage issues"
-                    href={`/settings/issues/manage/${issue.ID}`}
+                    href={`/issues/manage/${issue.ID}`}
                   >
                     <FaEdit />
                   </a>

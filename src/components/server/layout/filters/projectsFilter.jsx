@@ -7,7 +7,9 @@ export default function ProjectsFilter({ filter }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    router.push(`/projects/?keyword=${e.target.keyword.value}`);
+    router.push(`/projects/?keyword=${e.target.keyword.value}&sortby=${
+      e.target.sortBy.value
+    }`);
   };
 
   return (
@@ -22,6 +24,17 @@ export default function ProjectsFilter({ filter }) {
             defaultValue={filter.keyword ?? ""}
             placeholder="...search by name"
           />
+          <select
+            id="sortBy"
+            name="sortBy"
+            defaultValue={filter.sortby ?? "desc"}
+          >
+            <option className="default" value="default" disabled>
+              ...sort by
+            </option>
+            <option value="desc">Latest</option>
+            <option value="asc">Oldest</option>
+          </select>
           <button
             aria-label="search"
             type="submit"
