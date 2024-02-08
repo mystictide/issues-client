@@ -1,10 +1,10 @@
 "use server";
 
+import ProjectFunctions from "@/components/client/functions/projectFunctions";
 import DOMPurify from "isomorphic-dompurify";
-import { FaEdit } from "react-icons/fa";
 import Pager from "../../ui/pager";
 
-export default async function ProjectsList({ projects }) {
+export default async function ProjectsList({ admin, user, projects }) {
   function createDescription(description) {
     let text =
       description.length >= 56
@@ -41,15 +41,7 @@ export default async function ProjectsList({ projects }) {
                 <div className="flex-row flex-start no-select tb-40">
                   {createDescription(project.Description)}
                 </div>
-                <div className="flex-row flex-start functions">
-                  <a
-                    className="flex-row flex-center interactive"
-                    aria-label="manage projects"
-                    href={`/projects/manage/${project.ID}`}
-                  >
-                    <FaEdit />
-                  </a>
-                </div>
+                <ProjectFunctions admin={admin} user={user} project={project} />
               </li>
             ))}
           </ul>

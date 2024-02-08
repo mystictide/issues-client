@@ -7,15 +7,19 @@ export default function ProjectsFilter({ filter }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    router.push(`/projects/?keyword=${e.target.keyword.value}&sortby=${
-      e.target.sortBy.value
-    }`);
+    router.push(
+      `/projects/?keyword=${e.target.keyword.value}&sortby=${
+        e.target.sortBy.value
+      }&isActive=${!e.target.isActive.checked}`
+    );
   };
 
   return (
     <div className="bg flex-column sidebar filter">
       <section className="w-full h-full">
-        <h5 className="tb-body text-center padding no-select">Search & Filter</h5>
+        <h5 className="tb-body text-center padding no-select">
+          Search & Filter
+        </h5>
         <form className="flex-column" onSubmit={onSubmit}>
           <input
             type="text"
@@ -35,6 +39,15 @@ export default function ProjectsFilter({ filter }) {
             <option value="desc">Latest</option>
             <option value="asc">Oldest</option>
           </select>
+          <label className="relative checkbox flex-row flex-start no-select">
+            Archived
+            <input
+              id="isActive"
+              name="isActive"
+              type="checkbox"
+              defaultValue={!filter.IsActive}
+            />
+          </label>
           <button
             aria-label="search"
             type="submit"

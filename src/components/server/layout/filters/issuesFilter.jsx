@@ -16,7 +16,7 @@ export default function IssuesFilter({ filter, projects }) {
         e.target.status.value
       )}&priority=${handleDefault(e.target.priority.value)}&sortby=${
         e.target.sortBy.value
-      }`
+      }&isActive=${!e.target.isActive.checked}`
     );
   };
 
@@ -109,6 +109,15 @@ export default function IssuesFilter({ filter, projects }) {
             <option value="desc">Latest</option>
             <option value="asc">Oldest</option>
           </select>
+          <label className="relative checkbox flex-row flex-start no-select">
+            Archived
+            <input
+              id="isActive"
+              name="isActive"
+              type="checkbox"
+              defaultValue={!filter.IsActive}
+            />
+          </label>
           <button
             aria-label="search"
             type="submit"

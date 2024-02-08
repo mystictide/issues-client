@@ -91,6 +91,9 @@ body {
     a {
         color: $black;
     }
+    .modal-content{
+        background-color: darken($color: $white, $amount: 25);
+    }
 }
 
 body[data-theme="dark"] {
@@ -674,8 +677,15 @@ button.large {
             }
             .functions {
                 width: 15%;
+                column-gap: 0.1rem;
+                justify-content: space-evenly;
                 svg {
                     font-size: 1.3rem;
+                }
+                button {
+                    svg {
+                        font-size: 1.15rem;
+                    }
                 }
             }
         }
@@ -747,59 +757,19 @@ button.large {
         position: fixed;
         top: 0px;
         left: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         z-index: 23128;
         .modal-overlay {
-            width: 100%;
             min-height: 100vh;
             cursor: auto;
             background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyAQMAAAAk8RryAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP/AOW3MEoAAAAOSURBVBiVY2AYBYMJAAABkAAB2POVPwAAAABJRU5ErkJggg==)
                 repeat 0 0;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         .modal-content {
             position: absolute;
-            background: $white;
-            min-width: 400px;
-            padding: 1.3rem 2rem;
+            min-height: 150px;
             z-index: 9;
-            border: 1px solid rgba($variant, 0.5);
-
-            .heading {
-                width: 90%;
-                margin: 0 auto;
-                font-size: 0.5rem;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 1rem;
-                svg {
-                    font-size: 1.5rem;
-                    color: $white;
-                    opacity: 0.6;
-                    &:hover {
-                        opacity: 1;
-                        cursor: pointer;
-                    }
-                }
-            }
-            .modal-user {
-                row-gap: 1rem;
-                .avatar-view {
-                    width: 85px !important;
-                    height: 85px !important;
-                    .avatar-overlay {
-                        width: 85px;
-                        display: block !important;
-                    }
-                }
-            }
         }
     }
 }

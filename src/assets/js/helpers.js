@@ -62,6 +62,7 @@ export function buildFilter(filterData) {
     keyword: filterData.keyword ? filterData.keyword : null,
     page: filterData.page ?? 1,
     sortby: filterData.sortby ?? "desc",
+    isActive: filterData.isActive ?? true,
     token: filterData.token,
   };
   return filter;
@@ -77,6 +78,7 @@ export function buildIssueFilter(filterData) {
     priority: filterData.priority ?? 0,
     page: filterData.page ?? 1,
     sortby: filterData.sortby ?? "desc",
+    isActive: filterData.isActive ?? true,
     token: filterData.token,
   };
   return filter;

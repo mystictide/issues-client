@@ -1,10 +1,11 @@
 "use server";
 
 import { Priorities, States, Types } from "@/models/main/issue";
-import { FaEdit } from "react-icons/fa";
+
+import IssueFunctions from "@/components/client/functions/issueFunctions";
 import Pager from "../../ui/pager";
 
-export default async function IssuesList({ issues }) {
+export default async function IssuesList({ admin, user, issues }) {
   let typesList = Types;
   let statesList = States;
   let priorityList = Priorities;
@@ -48,15 +49,7 @@ export default async function IssuesList({ issues }) {
                       .Value
                   }
                 </div>
-                <div className="flex-row flex-start functions">
-                  <a
-                    className="flex-row flex-center interactive"
-                    aria-label="manage issues"
-                    href={`/issues/manage/${issue.ID}`}
-                  >
-                    <FaEdit />
-                  </a>
-                </div>
+                <IssueFunctions admin={admin} user={user} issue={issue} />
               </li>
             ))}
           </ul>

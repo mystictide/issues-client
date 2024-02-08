@@ -29,6 +29,7 @@ export default async function Users({ searchParams }) {
     priority: searchParams.priority,
     page: searchParams.page,
     sortby: searchParams.sortby,
+    isActive: searchParams.isActive,
     token: admin?.Token ?? user?.Token,
   });
 
@@ -56,7 +57,7 @@ export default async function Users({ searchParams }) {
           <div className="flex-column">
             {issues?.data?.length > 0 ? (
               <>
-                <IssuesList issues={issues} />
+                <IssuesList admin={admin} user={user} issues={issues} />
               </>
             ) : (
               <div className="flex-column flex-center no-select">
