@@ -91,7 +91,7 @@ body {
     a {
         color: $black;
     }
-    .modal-content{
+    .modal-content {
         background-color: darken($color: $white, $amount: 25);
     }
 }
@@ -466,6 +466,9 @@ button.large {
 .radius {
     border-radius: 3px;
 }
+.no-radius {
+    border-radius: 0;
+}
 
 .main-container {
     position: relative;
@@ -639,13 +642,19 @@ button.large {
                 }
             }
             .type {
+                color: $white;
                 background-color: #294ab8;
+                @include bg-transition($color: #294ab8);
             }
             .status {
+                color: $white;
                 background-color: #29b87d;
+                @include bg-transition($color: #29b87d);
             }
             .priority {
+                color: $white;
                 background-color: #b89229;
+                @include bg-transition($color: #b89229);
             }
             .t-header {
                 height: 55px;
@@ -734,6 +743,12 @@ button.large {
         }
         select {
             height: 50px;
+        }
+        label {
+            justify-content: center;
+            input {
+                left: 32%;
+            }
         }
     }
 

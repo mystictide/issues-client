@@ -43,6 +43,7 @@ export default function IssueFunctions({ admin, user, issue }) {
         </a>
         {issue.IsActive ? (
           <button
+            type="button"
             title="Archive"
             className="flex-row flex-center icon"
             aria-label="manage issues"
@@ -52,6 +53,7 @@ export default function IssueFunctions({ admin, user, issue }) {
           </button>
         ) : (
           <button
+            type="button"
             title="Activate"
             className="flex-row flex-center icon"
             aria-label="manage issues"

@@ -1,15 +1,11 @@
 "use server";
 
-import { Priorities, States, Types } from "@/models/main/issue";
 
 import IssueFunctions from "@/components/client/functions/issueFunctions";
+import IssueStateFunctions from "@/components/client/functions/issueStateFunctions";
 import Pager from "../../ui/pager";
 
 export default async function IssuesList({ admin, user, issues }) {
-  let typesList = Types;
-  let statesList = States;
-  let priorityList = Priorities;
-
   return (
     <>
       <h2 className="bg form-header flex-row flex-center flex-start">
@@ -37,18 +33,7 @@ export default async function IssuesList({ admin, user, issues }) {
                 >
                   {issue.Title}
                 </a>
-                <div className="flex-row flex-center no-select tb-20 type">
-                  {typesList.find((item) => item.ID === issue.Type).Value}
-                </div>
-                <div className="flex-row flex-center no-select tb-20 status">
-                  {statesList.find((item) => item.ID === issue.Status).Value}
-                </div>
-                <div className="flex-row flex-center no-select tb-20 priority">
-                  {
-                    priorityList.find((item) => item.ID === issue.Priority)
-                      .Value
-                  }
-                </div>
+                <IssueStateFunctions admin={admin} user={user} issue={issue} />
                 <IssueFunctions admin={admin} user={user} issue={issue} />
               </li>
             ))}
