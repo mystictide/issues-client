@@ -159,14 +159,15 @@ export default function IssueManager({ admin, user, data, users, projects }) {
           </select>
           <h4>Assigned Users</h4>
           <Select
+            instanceId="assignedTo"
+            id="assignedTo"
+            name="assignedTo"
             className="r-select"
             classNamePrefix="r-select"
-            value={data?.AssignedTo}
+            value={assignedTo}
             onChange={setAssigned}
             options={users}
-            getOptionLabel={(option) =>
-              `${option.FirstName} ${option.LastName}`
-            }
+            getOptionLabel={(options) => options["Name"]}
             getOptionValue={(options) => options["ID"]}
             isMulti
             isSearchable

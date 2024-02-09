@@ -29,7 +29,7 @@ export default async function IssuesList({ admin, user, issues }) {
                 <a
                   className="flex-row flex-start tb-40 tb-link"
                   aria-label="manage issues"
-                  href={`/issues/manage/${issue.ID}`}
+                  href={`/issues/view/${issue.ID}`}
                 >
                   {issue.Title}
                 </a>

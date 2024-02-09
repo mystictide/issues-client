@@ -161,6 +161,12 @@ body[data-theme="dark"] {
             background-color: $dark;
             .r-select__value-container {
                 background-color: $dark;
+                .r-select__single-value {
+                    color: $white;
+                }
+                .r-select__input-container {
+                    color: $white;
+                }
             }
         }
         .r-select__menu {
@@ -193,8 +199,14 @@ body[data-theme="dark"] {
 .w-400 {
     width: 400px;
 }
+.w-40 {
+    width: 40%;
+}
 .w-half {
     width: 50%;
+}
+.w-60 {
+    width: 60%;
 }
 .w-full {
     width: 100%;
@@ -204,6 +216,9 @@ body[data-theme="dark"] {
 }
 .relative {
     position: relative;
+}
+.flex-wrap {
+    flex-wrap: wrap;
 }
 .flex-row {
     display: flex;
@@ -352,31 +367,9 @@ select {
     @include bg-transition();
 }
 .r-select {
-    height: 38px;
-    width: 100%;
-    border-radius: 3px;
-    color: $dark;
     .r-select__control {
-        height: 38px;
         outline: none;
         border: none;
-    }
-    .r-select__value-container {
-        cursor: pointer;
-        height: 38px;
-        display: flex;
-        align-items: center;
-        border-radius: 3px;
-        .r-select__placeholder {
-            height: 38px;
-            display: flex;
-            align-items: center;
-        }
-        .r-select__input-container {
-            height: 38px;
-            display: flex;
-            align-items: center;
-        }
     }
 }
 .form-header {
@@ -632,15 +625,15 @@ button.large {
                 position: absolute;
                 left: 10px;
             }
-        }
 
-        .table {
-            row-gap: 0.3rem;
-            .tb-body {
-                li {
-                    height: 45px;
+            .issue-state {
+                height: 40px;
+                label {
+                    flex: 1;
+                    height: 100%;
                 }
             }
+
             .type {
                 color: $white;
                 background-color: #294ab8;
@@ -655,6 +648,15 @@ button.large {
                 color: $white;
                 background-color: #b89229;
                 @include bg-transition($color: #b89229);
+            }
+        }
+
+        .table {
+            row-gap: 0.3rem;
+            .tb-body {
+                li {
+                    height: 45px;
+                }
             }
             .t-header {
                 height: 55px;

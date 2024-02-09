@@ -12,7 +12,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { BsPlusSquareFill } from "react-icons/bs";
 
-export default async function Users({ searchParams }) {
+export default async function Issues({ searchParams }) {
   const cookieStore = cookies();
   const admin = readCookie(cookieStore, "admin");
   const user = readCookie(cookieStore, "auth");

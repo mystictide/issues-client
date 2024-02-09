@@ -9,6 +9,7 @@ export class UserClass {
     /**
      * @property {number|null} ID
      * @property {Company|null} Company
+     * @property {string|null} Name
      * @property {string|null} FirstName
      * @property {string|null} LastName
      * @property {string|null} Email
@@ -17,6 +18,7 @@ export class UserClass {
      */
     this.ID = Entity?.ID ?? 0;
     this.Company = Entity?.Company ?? 0;
+    this.Name = Entity?.FirstName + "" + Entity?.LastName ?? null;
     this.FirstName = Entity?.FirstName ?? null;
     this.LastName = Entity?.LastName ?? null;
     this.Email = Entity?.Email ?? null;
