@@ -435,9 +435,16 @@ button.large {
 .text-small {
     font-size: 14px;
 }
+.text-tiny {
+    font-size: 0.67em;
+}
 
 .text-large {
     font-size: 18px;
+}
+
+.weight-5 {
+    font-weight: 500;
 }
 
 .error {
@@ -461,6 +468,9 @@ button.large {
 }
 .no-radius {
     border-radius: 0;
+}
+.no-padding {
+    padding: 0;
 }
 
 .main-container {
@@ -624,6 +634,15 @@ button.large {
             .return {
                 position: absolute;
                 left: 10px;
+            }
+
+            .comment-header {
+                margin-top: 3.1rem;
+            }
+            .comment {
+                textarea {
+                    padding: 1rem;
+                }
             }
 
             .issue-state {

@@ -2,6 +2,7 @@
 
 import { getIssue } from "@/actions/fetch/actions";
 import { formatDate, readCookie } from "@/assets/js/helpers";
+import Comments from "@/components/client/lists/commentsList";
 import Header from "@/components/server/ui/header";
 import { Priorities, States, Types } from "@/models/main/issue";
 import { cookies } from "next/headers";
@@ -52,7 +53,7 @@ export default async function ViewIssue({ params }) {
                       }
                     </label>
                   </div>
-                  <h4 className="bg padding">{issue.Description}</h4>
+                  <p className="bg padding">{issue.Description}</p>
                   <div className="flex-row flex-divide">
                     <div className="text-small flex-column">
                       Assigned to{" "}
@@ -65,15 +66,24 @@ export default async function ViewIssue({ params }) {
                         ))}
                       </div>
                     </div>
-                    <div className="flex-column flex-end" style={{minWidth:"220px"}}>
-                      <h6 className="self-end">Created on {formatDate(issue.CreatedDate)}</h6>
-                      <h6 className="self-end">Created by {issue.CreatedBy ?? "Administrator"}</h6>
+                    <div
+                      className="flex-column flex-end"
+                      style={{ minWidth: "220px" }}
+                    >
+                      <h6 className="self-end">
+                        Created on {formatDate(issue.CreatedDate)}
+                      </h6>
+                      <h6 className="self-end">
+                        Created by {issue.CreatedBy ?? "Administrator"}
+                      </h6>
                     </div>
                   </div>
                 </div>
               </section>
             </div>
-            <div className="w-40">commenting</div>
+            <div className="w-40">
+              <Comments admin={admin} user={user} issue={issue} />
+            </div>
           </div>
         </div>
       </div>

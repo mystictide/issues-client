@@ -116,3 +116,31 @@ export async function filterIssues(reqData) {
     return error;
   }
 }
+
+export async function filterComments(reqData) {
+  try {
+    var config = {
+      method: "post",
+      url: API_URL + "filter/comments",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + reqData.token,
+      },
+      data: JSON.stringify(reqData),
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
