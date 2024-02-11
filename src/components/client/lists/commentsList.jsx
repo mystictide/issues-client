@@ -6,10 +6,10 @@ import { CommentClass } from "@/models/main/comment";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import CommentManager from "../managers/commentManager";
+import CommentsPager from "./commentsPager";
 
 export default function Comments({ admin, user, issue }) {
   const [comments, setComments] = useState(null);
-  const [page, setPage] = useState(1);
   const [item, setItem] = useState(null);
   const [body, setBody] = useState(null);
   let comment = new CommentClass();
@@ -19,7 +19,8 @@ export default function Comments({ admin, user, issue }) {
       const filter = {
         keyword: null,
         issueid: issue.ID,
-        page: page,
+        page: 1,
+        pagesize: 7,
         sortby: "desc",
         token: admin?.Token ?? user?.Token,
       };
@@ -29,14 +30,15 @@ export default function Comments({ admin, user, issue }) {
       }
       getComments();
     }
-  }, [admin?.Token, user?.Token, issue.ID, page, comments]);
+  }, [admin?.Token, user?.Token, issue.ID, comments]);
 
-  const fetchComments = async () => {
+  const fetchComments = async (page) => {
     const filter = {
       keyword: null,
       issueid: issue.ID,
-      page: page,
+      page: page ?? 1,
       sortby: "desc",
+      pagesize: 7,
       token: admin?.Token ?? user?.Token,
     };
     const comments = await filterComments(filter);
@@ -45,7 +47,7 @@ export default function Comments({ admin, user, issue }) {
 
   const onSubmit = async (e, body) => {
     e.preventDefault();
-    if (body.length > 0) {
+    if (body?.length > 0) {
       comment.ID = item?.ID ?? 0;
       comment.User = {
         ID: item?.User.ID ?? admin?.ID ? 0 : user?.ID,
@@ -92,7 +94,7 @@ export default function Comments({ admin, user, issue }) {
 
       {comments ? (
         <>
-          {/* <CommentsPager data={comments} setPage={setPage} /> */}
+          <CommentsPager data={comments} fetchComments={fetchComments} />
           {comments?.data?.map((comment) => (
             <React.Fragment key={comment.ID}>
               <div id={comment.ID} className="bg flex-column padding">

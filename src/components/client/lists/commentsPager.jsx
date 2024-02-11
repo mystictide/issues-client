@@ -1,6 +1,6 @@
 "use client";
 
-export default function CommentsPager({ data, setPage }) {
+export default function CommentsPager({ data, fetchComments }) {
   return (
     <>
       {data.filter.pager.TotalPages > 1 ? (
@@ -12,16 +12,23 @@ export default function CommentsPager({ data, setPage }) {
           <ul className="flex-row">
             {data.filter.pager.CurrentPage > 1 ? (
               <li>
-                <a className="bg padding" href={`${url}?page=1`}>{"<<"}</a>
+                <button className="bg " onClick={() => fetchComments(1)}>
+                  {"<<"}
+                </button>
               </li>
             ) : (
               ""
             )}
             {data.filter.pager.CurrentPage > 1 ? (
               <li>
-                <a className="bg padding" href={`${url}?page=${data.filter.pager.CurrentPage - 1}`}>
-                  Previous Page
-                </a>
+                <button
+                  className="bg"
+                  onClick={() =>
+                    fetchComments(data.filter.pager.CurrentPage - 1)
+                  }
+                >
+                  {"<"}
+                </button>
               </li>
             ) : (
               ""
@@ -30,18 +37,26 @@ export default function CommentsPager({ data, setPage }) {
               ""
             ) : (
               <li>
-                <a className="bg padding" href={`${url}?page=${data.filter.pager.CurrentPage + 1}`}>
-                  Next Page
-                </a>
+                <button
+                  className="bg"
+                  onClick={() =>
+                    fetchComments(data.filter.pager.CurrentPage + 1)
+                  }
+                >
+                  {">"}
+                </button>
               </li>
             )}
             {data.filter.pager.CurrentPage === data.filter.pager.TotalPages ? (
               ""
             ) : (
               <li>
-                <a className="bg padding" href={`${url}?page=${data.filter.pager.TotalPages}`}>
+                <button
+                  className="bg"
+                  onClick={() => fetchComments(data.filter.pager.TotalPages)}
+                >
                   {">>"}
-                </a>
+                </button>
               </li>
             )}
           </ul>
