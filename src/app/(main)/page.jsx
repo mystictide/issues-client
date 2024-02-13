@@ -1,5 +1,6 @@
 "use server";
 
+import { getIssues, getProjects } from "@/actions/fetch/actions";
 import { readCookie } from "@/assets/js/helpers";
 import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
@@ -13,7 +14,10 @@ export default async function Main() {
   if (!admin && !user) {
     redirect("/account");
   }
-  
+
+  const projects = await getProjects(admin?.Token ?? user?.Token, 10);
+  const issues = await getIssues(admin?.Token ?? user?.Token, 10);
+
   return (
     <>
       <Header page={"dashboard"} />

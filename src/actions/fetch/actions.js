@@ -148,11 +148,11 @@ export async function getProject(reqData) {
   }
 }
 
-export async function getProjects(token) {
+export async function getProjects(token, limit) {
   try {
     var config = {
       method: "get",
-      url: API_URL + "get/projects",
+      url: API_URL + "get/projects?limit=" + limit,
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
@@ -183,6 +183,33 @@ export async function getIssue(reqData) {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + reqData.token,
+      },
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getIssues(token, limit) {
+  try {
+    var config = {
+      method: "get",
+      url: API_URL + "get/issues?limit=" + limit,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
     };
     var result = await axios(config)

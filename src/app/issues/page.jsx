@@ -34,11 +34,11 @@ export default async function Issues({ searchParams }) {
   });
 
   const issues = await filterIssues(filter);
-  const projects = await getProjects(admin?.Token ?? user?.Token);
+  const projects = await getProjects(admin?.Token ?? user?.Token, "");
 
   return (
     <>
-      <Header />
+      <Header page={"issues"}/>
       <div className="content-wrapper flex-row">
         <section>
           <div className="manage flex-row flex-center">

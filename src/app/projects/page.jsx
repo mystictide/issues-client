@@ -33,7 +33,7 @@ export default async function Users({ searchParams }) {
 
   return (
     <>
-      <Header />
+      <Header page={"projects"}/>
       <div className="content-wrapper flex-row">
         <section>
           <div className="manage flex-row flex-center">

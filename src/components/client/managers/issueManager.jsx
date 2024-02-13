@@ -174,7 +174,7 @@ export default function IssueManager({ admin, user, data, users, projects }) {
           />
           {assignedTo < 1 ? (
             <label className="text-small error">
-              Issues must have a manager
+              Issue must have an assignee
             </label>
           ) : (
             ""

@@ -74,6 +74,11 @@ body {
     .bg {
         background-color: darken($color: $white, $amount: 10);
     }
+    .assigned {
+        .r-select {
+            border: 2px solid darken($color: $white, $amount: 10);
+        }
+    }
     .tb-body {
         background-color: darken($color: $white, $amount: 25);
     }
@@ -105,6 +110,11 @@ body[data-theme="dark"] {
     }
     .tb-body {
         background-color: lighten($color: $dark, $amount: 25);
+    }
+    .assigned {
+        .r-select {
+            border: 2px solid lighten($color: $dark, $amount: 10);
+        }
     }
     .modal-content {
         background: $dark;
@@ -306,6 +316,7 @@ span.function {
         cursor: pointer;
     }
     &:hover {
+        cursor: pointer;
         svg {
             transition: all 0.35s ease;
             -webkit-bg-transition: all 0.35s ease;
@@ -644,10 +655,10 @@ button.large {
                     padding: 1rem;
                 }
             }
-
             .issue-state {
                 height: 40px;
-                .states {height: 100%;
+                .states {
+                    height: 100%;
                     width: 100%;
                     button {
                         flex: 1;
@@ -660,7 +671,6 @@ button.large {
                     height: 100%;
                 }
             }
-
             .type {
                 color: $white;
                 background-color: #294ab8;

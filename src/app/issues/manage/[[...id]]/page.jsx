@@ -25,7 +25,7 @@ export default async function ManageIssue({ params }) {
   }
 
   const users = await getUsers(admin?.Token ?? user?.Token);
-  const projects = await getProjects(admin?.Token ?? user?.Token);
+  const projects = await getProjects(admin?.Token ?? user?.Token, "");
 
   return (
     <>

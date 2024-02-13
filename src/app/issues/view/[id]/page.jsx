@@ -1,7 +1,8 @@
 "use server";
 
-import { getIssue } from "@/actions/fetch/actions";
+import { getIssue, getUsers } from "@/actions/fetch/actions";
 import { formatDate, readCookie } from "@/assets/js/helpers";
+import IssueAssignedUsers from "@/components/client/functions/issueAssignedUsers";
 import IssueStateFunctions from "@/components/client/functions/issueStateFunctions";
 import Comments from "@/components/client/lists/commentsList";
 import Header from "@/components/server/ui/header";
@@ -25,6 +26,8 @@ export default async function ViewIssue({ params }) {
       token: admin?.Token ?? user?.Token,
     });
   }
+
+  const users = await getUsers(admin?.Token ?? user?.Token);
 
   return (
     <>
@@ -69,14 +72,12 @@ export default async function ViewIssue({ params }) {
                   <div className="flex-row flex-divide">
                     <div className="text-small flex-column">
                       Assigned to{" "}
-                      <div className="flex-row flex-wrap">
-                        {issue.AssignedTo.map((u, index) => (
-                          <h5 key={u.ID}>
-                            {u.FirstName} {u.LastName}
-                            {index + 1 != issue.AssignedTo.length ? "," : ""}
-                          </h5>
-                        ))}
-                      </div>
+                      <IssueAssignedUsers
+                        admin={admin}
+                        user={user}
+                        issue={issue}
+                        users={users}
+                      />
                     </div>
                     <div
                       className="flex-column flex-end"
