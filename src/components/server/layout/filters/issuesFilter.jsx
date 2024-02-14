@@ -31,21 +31,26 @@ export default function IssuesFilter({ filter, projects }) {
           Search & Filter
         </h5>
         <form className="flex-column" onSubmit={onSubmit}>
-          <select
-            id="project"
-            name="project"
-            defaultValue={filter.projectid < 1 ? "default" : filter.projectid}
-          >
-            <option className="default" value="default" disabled>
-              ...search by project
-            </option>
-            <option value="0">All Projects</option>
-            {projects?.map((p) => (
-              <option key={p.ID} value={p.ID}>
-                {p.Name}
+          {projects?.data ? (
+            <select
+              id="project"
+              name="project"
+              defaultValue={filter.projectid < 1 ? "default" : filter.projectid}
+            >
+              <option className="default" value="default" disabled>
+                ...search by project
               </option>
-            ))}
-          </select>
+              <option value="0">All Projects</option>
+              {projects?.map((p) => (
+                <option key={p.ID} value={p.ID}>
+                  {p.Name}
+                </option>
+              ))}
+            </select>
+          ) : (
+            ""
+          )}
+
           <input
             type="text"
             id="keyword"

@@ -756,6 +756,26 @@ button.large {
             position: sticky;
             top: 50px;
         }
+
+        .stats {
+            row-gap: 1rem;
+            .box {
+                padding: 1rem;
+                @include bg-transition();
+            }
+            .box-project {
+                width: 330px;
+                height: 140px;
+            }
+            .box-issue {
+                width: 260px;
+                height: 160px;
+            }
+        }
+    }
+
+    .content-wrapper.smaller {
+        max-width: 1150px;
     }
 
     .pager {

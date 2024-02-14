@@ -17,7 +17,6 @@ export default function IssueAssignedUsers({ admin, user, issue, users }) {
       entity: JSON.stringify(issue),
       token: admin?.Token ?? user?.Token,
     };
-    console.log(reqData);
     let res = await manageAssignedUsers(reqData);
     if (res) {
       setAssignedUsersModal(false);

@@ -228,3 +228,57 @@ export async function getIssues(token, limit) {
     return error;
   }
 }
+
+export async function getIssueStats(token) {
+  try {
+    var config = {
+      method: "get",
+      url: API_URL + "get/stats/issues",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getProjectStats(token) {
+  try {
+    var config = {
+      method: "get",
+      url: API_URL + "get/stats/projects",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
