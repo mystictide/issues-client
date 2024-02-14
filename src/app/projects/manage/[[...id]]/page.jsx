@@ -1,13 +1,13 @@
 "use server";
 
-import { getRoles, getUser } from "@/actions/fetch/actions";
+import { getProject, getUsers } from "@/actions/fetch/actions";
 import { readCookie } from "@/assets/js/helpers";
-import UserManager from "@/components/client/managers/userManager";
+import ProjectManager from "@/components/client/managers/projectManager";
 import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function ManageUser({ params }) {
+export default async function ManageProject({ params }) {
   const cookieStore = cookies();
   const admin = readCookie(cookieStore, "admin");
   const user = readCookie(cookieStore, "auth");
@@ -16,15 +16,15 @@ export default async function ManageUser({ params }) {
     redirect("/account");
   }
 
-  let userData;
+  let project;
   if (params?.id && params?.id > 0) {
-    userData = await getUser({
+    project = await getProject({
       ID: params?.id,
       token: admin?.Token ?? user?.Token,
     });
   }
 
-  const roles = await getRoles(admin?.Token ?? user?.Token);
+  const users = await getUsers(admin?.Token ?? user?.Token);
 
   return (
     <>
@@ -32,12 +32,12 @@ export default async function ManageUser({ params }) {
       <div className="content-wrapper flex-row v-center">
         <div className="content flex-column">
           <div className="flex-column">
-            {roles[0]?.ID ? (
-              <UserManager
+            {users[0]?.ID ? (
+              <ProjectManager
                 admin={admin}
                 user={user}
-                data={userData}
-                roles={roles}
+                data={project}
+                users={users}
               />
             ) : (
               <div className="flex-column flex-center">

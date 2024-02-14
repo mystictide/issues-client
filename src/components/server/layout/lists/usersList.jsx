@@ -13,8 +13,8 @@ export default async function UsersList({ users }) {
       <section className="table flex-column">
         <div className="bg">
           <ul className="flex-row w-full">
-            <li className="h-full tb-75 padding">Name</li>
-            <li className="h-full functions padding">Role</li>
+            <li className="h-full tb-60 padding">Name</li>
+            <li className="h-full tb-25 padding">Role</li>
             <li className="h-full functions padding">Functions</li>
           </ul>
         </div>
@@ -23,13 +23,13 @@ export default async function UsersList({ users }) {
             {users.data?.map((user) => (
               <li key={user.ID} className="flex-row w-full">
                 <a
-                  className="flex-row flex-start padding tb-75 tb-link"
+                  className="flex-row flex-start padding tb-60 tb-link"
                   aria-label="manage users"
                   href={`/settings/users/manage/${user.ID}`}
                 >
                   {user.FirstName} {user.LastName}
                 </a>
-                <div className="flex-row flex-start functions no-select">
+                <div className="flex-row flex-start no-select tb-25">
                   {user.Role.Name}
                 </div>
                 <div className="flex-row flex-start functions">

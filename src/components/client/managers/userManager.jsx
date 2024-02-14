@@ -53,7 +53,7 @@ export default function UserManager({ admin, user, data, roles }) {
 
   useEffect(() => {
     const validateMail = setTimeout(async () => {
-      if (email.length > 0 && email !== data.Email) {
+      if (email.length > 0 && email !== data?.Email) {
         let reqData = { email, company: false };
         let res = await checkExistingEmail(reqData);
         setEmailExists(res);
@@ -89,17 +89,19 @@ export default function UserManager({ admin, user, data, roles }) {
 
   return (
     <>
-      <a
-        className="interactive flex-row flex-center flex-start"
-        aria-label="go back"
-        href="/settings/roles/"
-      >
-        <TiArrowBack />
-        Go back
-      </a>
-      <h2 className="bg form-header flex-row flex-center">
-        Creating a new User
-      </h2>
+      <section className="flex-row relative">
+        <a
+          className="interactive h-full flex-row flex-center flex-start return"
+          aria-label="go back"
+          href="/settings/roles/"
+        >
+          <TiArrowBack />
+          Go back
+        </a>
+        <h2 className="bg form-header flex-row flex-center">
+          Creating a new User
+        </h2>
+      </section>
       <form className="flex-column w-full" onSubmit={onSubmit}>
         <section className="bg content-main self-center w-half flex-column padding">
           <h4>First Name</h4>

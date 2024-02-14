@@ -62,6 +62,23 @@ export function buildFilter(filterData) {
     keyword: filterData.keyword ? filterData.keyword : null,
     page: filterData.page ?? 1,
     sortby: filterData.sortby ?? "desc",
+    isActive: filterData.isActive ?? true,
+    token: filterData.token,
+  };
+  return filter;
+}
+
+export function buildIssueFilter(filterData) {
+  let filter = {
+    id: filterData.id ? filterData.id : 0,
+    keyword: filterData.keyword ? filterData.keyword : null,
+    projectid: filterData.projectid ?? 0,
+    type: filterData.type ?? 0,
+    status: filterData.status ?? 0,
+    priority: filterData.priority ?? 0,
+    page: filterData.page ?? 1,
+    sortby: filterData.sortby ?? "desc",
+    isActive: filterData.isActive ?? true,
     token: filterData.token,
   };
   return filter;
