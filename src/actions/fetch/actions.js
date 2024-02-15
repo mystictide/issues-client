@@ -229,6 +229,33 @@ export async function getIssues(token, limit) {
   }
 }
 
+export async function getComments(token, limit) {
+  try {
+    var config = {
+      method: "get",
+      url: API_URL + "get/comments?limit=" + limit,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
+
 export async function getIssueStats(token) {
   try {
     var config = {
