@@ -16,6 +16,10 @@ export default async function ManageProject({ params }) {
     redirect("/account");
   }
 
+  if (!user.Role.Attributes.some((r) => [1, 2, 3].includes(r))) {
+    redirect("/");
+  }
+
   let project;
   if (params?.id && params?.id > 0) {
     project = await getProject({

@@ -1,6 +1,5 @@
 "use server";
 
-
 import IssueFunctions from "@/components/client/functions/issueFunctions";
 import IssueStateFunctions from "@/components/client/functions/issueStateFunctions";
 import Pager from "../../ui/pager";
@@ -19,7 +18,14 @@ export default async function IssuesList({ admin, user, issues }) {
             <li className="h-full tb-20 flex-row flex-center">Type</li>
             <li className="h-full tb-20 flex-row flex-center">Status</li>
             <li className="h-full tb-20 flex-row flex-center">Priority</li>
-            <li className="h-full functions flex-row flex-start">Functions</li>
+            {admin ||
+            user.Role.Attributes.some((r) => [1, 2, 3, 4].includes(r)) ? (
+              <li className="h-full functions flex-row flex-start">
+                Functions
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <div className="tb-body flex-column">
@@ -34,7 +40,12 @@ export default async function IssuesList({ admin, user, issues }) {
                   {issue.Title}
                 </a>
                 <IssueStateFunctions admin={admin} user={user} issue={issue} />
-                <IssueFunctions admin={admin} user={user} issue={issue} />
+                {admin ||
+                user.Role.Attributes.some((r) => [1, 2, 3, 4].includes(r)) ? (
+                  <IssueFunctions admin={admin} user={user} issue={issue} />
+                ) : (
+                  ""
+                )}
               </li>
             ))}
           </ul>

@@ -2,8 +2,8 @@
 
 import axios from "axios";
 
-const API_URL = "http://localhost:8484/";
-// const API_URL = "https://issapi.herrguller.cc/";
+// const API_URL = "http://localhost:8484/";
+const API_URL = "https://issapi.herrguller.cc/";
 
 export async function getRole(reqData) {
   try {
@@ -207,6 +207,33 @@ export async function getIssues(token, limit) {
     var config = {
       method: "get",
       url: API_URL + "get/issues?limit=" + limit,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    var result = await axios(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        if (error?.response) {
+          return error?.response?.data;
+        } else {
+          throw "Server error.";
+        }
+      });
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getComments(token, limit) {
+  try {
+    var config = {
+      method: "get",
+      url: API_URL + "get/comments?limit=" + limit,
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,

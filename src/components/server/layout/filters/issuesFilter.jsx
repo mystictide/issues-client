@@ -31,7 +31,7 @@ export default function IssuesFilter({ filter, projects }) {
           Search & Filter
         </h5>
         <form className="flex-column" onSubmit={onSubmit}>
-          {projects?.data ? (
+          {projects ? (
             <select
               id="project"
               name="project"
@@ -41,7 +41,7 @@ export default function IssuesFilter({ filter, projects }) {
                 ...search by project
               </option>
               <option value="0">All Projects</option>
-              {projects?.map((p) => (
+              {projects.map((p) => (
                 <option key={p.ID} value={p.ID}>
                   {p.Name}
                 </option>

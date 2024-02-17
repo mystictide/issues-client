@@ -3,7 +3,7 @@
 import { FaEdit } from "react-icons/fa";
 import Pager from "../../ui/pager";
 
-export default async function RolesList({ roles }) {
+export default async function RolesList({ admin, user, roles }) {
   return (
     <>
       <h2 className="bg form-header flex-row flex-center flex-start">
@@ -14,7 +14,11 @@ export default async function RolesList({ roles }) {
         <div className="bg">
           <ul className="flex-row w-full">
             <li className="h-full tb-85 padding">Role Name</li>
-            <li className="h-full functions padding">Functions</li>
+            {admin || user.Role.Attributes.some((r) => [1].includes(r)) ? (
+              <li className="h-full functions padding">Functions</li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <div className="tb-body flex-column">
@@ -28,15 +32,19 @@ export default async function RolesList({ roles }) {
                 >
                   {role.Name}
                 </a>
-                <div className="flex-row flex-start functions">
-                  <a
-                    className="flex-row flex-center interactive"
-                    aria-label="manage roles"
-                    href={`/settings/roles/manage/${role.ID}`}
-                  >
-                    <FaEdit />
-                  </a>
-                </div>
+                {admin || user.Role.Attributes.some((r) => [1].includes(r)) ? (
+                  <div className="flex-row flex-start functions">
+                    <a
+                      className="flex-row flex-center interactive"
+                      aria-label="manage roles"
+                      href={`/settings/roles/manage/${role.ID}`}
+                    >
+                      <FaEdit />
+                    </a>
+                  </div>
+                ) : (
+                  ""
+                )}
               </li>
             ))}
           </ul>

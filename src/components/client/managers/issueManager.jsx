@@ -38,7 +38,7 @@ export default function IssueManager({ admin, user, data, users, projects }) {
       type > 0 &&
       status > 0 &&
       priority > 0 &&
-      assignedTo.length > 0
+      assignedTo?.length > 0
     ) {
       issue.ID = data?.ID ?? 0;
       issue.Project = {

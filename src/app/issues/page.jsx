@@ -38,7 +38,7 @@ export default async function Issues({ searchParams }) {
 
   return (
     <>
-      <Header page={"issues"}/>
+      <Header page={"issues"} />
       <div className="content-wrapper flex-row">
         <section>
           <div className="manage flex-row flex-center">
