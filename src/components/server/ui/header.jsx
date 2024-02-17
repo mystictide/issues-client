@@ -53,13 +53,13 @@ export default async function Header({ page }) {
             <h5 className="text-center">{admin.Name}</h5>
           )}
           {user ? (
-            <h6 className="text-center">user role</h6>
+            <h6 className="text-center">{user.Role.Name}</h6>
           ) : (
             <h6 className="text-center">Administrator</h6>
           )}
         </section>
         <section className="flex-row half-gap" style={{ position: "relative" }}>
-          <Settings />
+          <Settings admin={admin} user={user} />
           <Logout />
           <SetTheme theme={settings?.theme ?? "light"} />
         </section>

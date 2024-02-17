@@ -3,7 +3,7 @@
 import { FaEdit } from "react-icons/fa";
 import Pager from "../../ui/pager";
 
-export default async function UsersList({ users }) {
+export default async function UsersList({ admin, user, users }) {
   return (
     <>
       <h2 className="bg form-header flex-row flex-center flex-start">
@@ -15,32 +15,41 @@ export default async function UsersList({ users }) {
           <ul className="flex-row w-full">
             <li className="h-full tb-60 padding">Name</li>
             <li className="h-full tb-25 padding">Role</li>
-            <li className="h-full functions padding">Functions</li>
+            {admin || user.Role.Attributes.some((r) => [1, 2].includes(r)) ? (
+              <li className="h-full functions padding">Functions</li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <div className="tb-body flex-column">
           <ul className="w-full">
-            {users.data?.map((user) => (
-              <li key={user.ID} className="flex-row w-full">
+            {users.data?.map((item) => (
+              <li key={item.ID} className="flex-row w-full">
                 <a
                   className="flex-row flex-start padding tb-60 tb-link"
                   aria-label="manage users"
-                  href={`/settings/users/manage/${user.ID}`}
+                  href={`/settings/users/manage/${item.ID}`}
                 >
-                  {user.FirstName} {user.LastName}
+                  {item.FirstName} {item.LastName}
                 </a>
                 <div className="flex-row flex-start no-select tb-25">
-                  {user.Role.Name}
+                  {item.Role.Name}
                 </div>
-                <div className="flex-row flex-start functions">
-                  <a
-                    className="flex-row flex-center interactive"
-                    aria-label="manage users"
-                    href={`/settings/users/manage/${user.ID}`}
-                  >
-                    <FaEdit />
-                  </a>
-                </div>
+                {admin ||
+                user.Role.Attributes.some((r) => [1, 2].includes(r)) ? (
+                  <div className="flex-row flex-start functions">
+                    <a
+                      className="flex-row flex-center interactive"
+                      aria-label="manage users"
+                      href={`/settings/users/manage/${item.ID}`}
+                    >
+                      <FaEdit />
+                    </a>
+                  </div>
+                ) : (
+                  ""
+                )}
               </li>
             ))}
           </ul>

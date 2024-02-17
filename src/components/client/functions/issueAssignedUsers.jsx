@@ -67,7 +67,11 @@ export default function IssueAssignedUsers({ admin, user, issue, users }) {
           <div
             name="assignedUsersModal"
             className="flex-row flex-wrap interactive"
-            onClick={(e) => setAssignedUsersModal(true)}
+            onClick={(e) =>
+              admin || user.Role.Attributes.some((r) => [1, 5].includes(r))
+                ? setAssignedUsersModal(true)
+                : undefined
+            }
           >
             {issue.AssignedTo.map((u, index) => (
               <h5 key={u.ID}>

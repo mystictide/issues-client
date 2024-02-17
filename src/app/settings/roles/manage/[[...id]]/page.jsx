@@ -16,6 +16,10 @@ export default async function ManageRole({ params }) {
     redirect("/account");
   }
 
+  if (!user.Role.Attributes.some((r) => [1].includes(r))) {
+    redirect("/");
+  }
+
   let role;
   if (params?.id && params?.id > 0) {
     role = await getRole({

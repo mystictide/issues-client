@@ -50,7 +50,7 @@ export default async function Users({ searchParams }) {
           <div className="flex-column">
             {users?.data?.length > 0 ? (
               <>
-                <UsersList users={users} />
+                <UsersList admin={admin} user={user} users={users} />
               </>
             ) : (
               <div className="flex-column flex-center no-select">

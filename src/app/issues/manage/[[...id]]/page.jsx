@@ -16,6 +16,10 @@ export default async function ManageIssue({ params }) {
     redirect("/account");
   }
 
+  if (!user.Role.Attributes.some((r) => [1, 2, 3, 4].includes(r))) {
+    redirect("/");
+  }
+
   let issue;
   if (params?.id && params?.id > 0) {
     issue = await getIssue({

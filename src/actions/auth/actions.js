@@ -4,8 +4,8 @@ import { setExpirationDate } from "@/assets/js/helpers";
 import axios from "axios";
 import { cookies } from "next/headers";
 
-const API_URL = "http://localhost:8484/";
-// const API_URL = "https://issapi.herrguller.cc/";
+// const API_URL = "http://localhost:8484/";
+const API_URL = "https://issapi.herrguller.cc/";
 
 export async function addUser(reqData) {
   try {

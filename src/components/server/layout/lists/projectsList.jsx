@@ -24,24 +24,36 @@ export default async function ProjectsList({ admin, user, projects }) {
           <ul className="flex-row w-full">
             <li className="h-full tb-40 padding">Project Name</li>
             <li className="h-full tb-40 padding">Description</li>
-            <li className="h-full functions padding">Functions</li>
+            {admin ||
+            user.Role.Attributes.some((r) => [1, 2, 3].includes(r)) ? (
+              <li className="h-full functions padding">Functions</li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <div className="tb-body flex-column">
           <ul className="w-full">
             {projects.data?.map((project) => (
               <li key={project.ID} className="flex-row w-full">
-                <a
-                  className="flex-row flex-start padding tb-40 tb-link"
-                  aria-label="manage projects"
-                  href={`/projects/manage/${project.ID}`}
-                >
+                <h4 className="flex-row flex-start padding tb-40 tb-link">
                   {project.Name}
-                </a>
+                </h4>
                 <div className="flex-row flex-start no-select tb-40">
-                  {createDescription(project.Description)}
+                  <h5 className="weight-5">
+                    {createDescription(project.Description)}
+                  </h5>
                 </div>
-                <ProjectFunctions admin={admin} user={user} project={project} />
+                {admin ||
+                user.Role.Attributes.some((r) => [1, 2, 3].includes(r)) ? (
+                  <ProjectFunctions
+                    admin={admin}
+                    user={user}
+                    project={project}
+                  />
+                ) : (
+                  ""
+                )}
               </li>
             ))}
           </ul>

@@ -20,6 +20,10 @@ export default async function Roles({ searchParams }) {
     redirect("/account");
   }
 
+  if (!user.Role.Attributes.some((r) => [1].includes(r))) {
+    redirect("/");
+  }
+
   const filter = buildFilter({
     keyword: searchParams.keyword,
     page: searchParams.page,
@@ -50,7 +54,7 @@ export default async function Roles({ searchParams }) {
           <div className="flex-column">
             {roles?.data?.length > 0 ? (
               <>
-                <RolesList roles={roles} />
+                <RolesList admin={admin} user={user} roles={roles} />
               </>
             ) : (
               <div className="flex-column flex-center no-select">
