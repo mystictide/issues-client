@@ -20,7 +20,7 @@ export default async function Roles({ searchParams }) {
     redirect("/account");
   }
 
-  if (!user.Role.Attributes.some((r) => [1].includes(r))) {
+  if (user && !user.Role.Attributes.some((r) => [1].includes(r))) {
     redirect("/");
   }
 

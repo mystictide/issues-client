@@ -37,12 +37,11 @@ export default function IssueManager({ admin, user, data, users, projects }) {
       description &&
       type > 0 &&
       status > 0 &&
-      priority > 0 &&
-      assignedTo?.length > 0
+      priority > 0
     ) {
       issue.ID = data?.ID ?? 0;
       issue.Project = {
-        ID: parseInt(project),
+        ID: parseInt(project.ID ?? project),
         CompanyID: admin?.ID ?? user?.CompanyID,
       };
       issue.AssignedTo = assignedTo;
@@ -172,13 +171,6 @@ export default function IssueManager({ admin, user, data, users, projects }) {
             isMulti
             isSearchable
           />
-          {assignedTo < 1 ? (
-            <label className="text-small error">
-              Issue must have an assignee
-            </label>
-          ) : (
-            ""
-          )}
         </section>
         <button type="submit" className="bg large">
           Submit

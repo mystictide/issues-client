@@ -67,7 +67,6 @@ export default async function ViewIssue({ params }) {
                       </label>
                     </div>
                   )}
-
                   <p className="bg padding">{issue.Description}</p>
                   <div className="flex-row flex-divide">
                     <div className="text-small flex-column">
