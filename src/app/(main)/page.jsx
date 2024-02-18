@@ -33,7 +33,7 @@ export default async function Main() {
           <section className="flex-column w-full padding">
             <h3>Projects Overview</h3>
             <div className="flex-row flex-wrap w-full stats">
-              {projects[0].ID ? (
+              {projects?.length > 0 && projects[0].ID ? (
                 <>
                   {projects.map((project) => (
                     <a
@@ -121,7 +121,7 @@ export default async function Main() {
             <div className="flex-column w-half">
               <h3>Latest Issues</h3>
               <div className="flex-column flex-wrap w-full">
-                {issues[0].ID ? (
+                {issues?.length && issues[0].ID ? (
                   <>
                     {issues.map((issue) => (
                       <a
@@ -144,7 +144,7 @@ export default async function Main() {
             <div className="flex-column w-half">
               <h3>Latest Comments</h3>
               <div className="flex-column flex-wrap w-full">
-                {comments[0].ID ? (
+                {comments?.length && comments[0].ID ? (
                   <>
                     {comments?.map((comment) => (
                       <a

@@ -50,13 +50,6 @@ export default function IssueAssignedUsers({ admin, user, issue, users }) {
                   </option>
                 ))}
               </Select>
-              {assignedTo < 1 ? (
-                <label className="text-small error">
-                  Issue must have an assignee
-                </label>
-              ) : (
-                ""
-              )}
             </div>
 
             <button type="submit" className="bg large">
@@ -73,12 +66,18 @@ export default function IssueAssignedUsers({ admin, user, issue, users }) {
                 : undefined
             }
           >
-            {issue.AssignedTo.map((u, index) => (
-              <h5 key={u.ID}>
-                {u.FirstName} {u.LastName}
-                {index + 1 != issue.AssignedTo.length ? "," : ""}
-              </h5>
-            ))}
+            {issue.AssignedTo ? (
+              <>
+                {issue.AssignedTo.map((u, index) => (
+                  <h5 key={u.ID}>
+                    {u.FirstName} {u.LastName}
+                    {index + 1 != issue.AssignedTo.length ? "," : ""}
+                  </h5>
+                ))}
+              </>
+            ) : (
+              "No users assigned"
+            )}
           </div>
         )}
       </div>

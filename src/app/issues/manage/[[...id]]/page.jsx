@@ -16,7 +16,7 @@ export default async function ManageIssue({ params }) {
     redirect("/account");
   }
 
-  if (!user.Role.Attributes.some((r) => [1, 2, 3, 4].includes(r))) {
+  if (user && !user.Role.Attributes.some((r) => [1, 2, 3, 4].includes(r))) {
     redirect("/");
   }
 
@@ -37,7 +37,7 @@ export default async function ManageIssue({ params }) {
       <div className="content-wrapper flex-row v-center">
         <div className="content flex-column">
           <div className="flex-column">
-            {users[0]?.ID && projects[0]?.ID ? (
+            {projects[0]?.ID ? (
               <IssueManager
                 admin={admin}
                 user={user}
@@ -47,8 +47,14 @@ export default async function ManageIssue({ params }) {
               />
             ) : (
               <div className="flex-column flex-center">
-                <h1>404</h1>
-                <h3>Could not connect the server. Please try again.</h3>
+                <h1>No active project found</h1>
+                <a
+                  className="interactive"
+                  aria-label="add new project"
+                  href="/projects/manage"
+                >
+                  Please create a new one here.
+                </a>
               </div>
             )}
           </div>

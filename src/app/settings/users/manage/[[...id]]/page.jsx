@@ -16,7 +16,7 @@ export default async function ManageUser({ params }) {
     redirect("/account");
   }
 
-  if (!user.Role.Attributes.some((r) => [1, 2].includes(r))) {
+  if (user && !user.Role.Attributes.some((r) => [1, 2].includes(r))) {
     redirect("/");
   }
 
@@ -45,8 +45,14 @@ export default async function ManageUser({ params }) {
               />
             ) : (
               <div className="flex-column flex-center">
-                <h1>404</h1>
-                <h3>Could not connect the server. Please try again.</h3>
+                <h1>No user roles defined</h1>
+                <a
+                  className="interactive"
+                  aria-label="add new project"
+                  href="/settings/roles/manage"
+                >
+                  Please create a new one here.
+                </a>
               </div>
             )}
           </div>

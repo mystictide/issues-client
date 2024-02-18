@@ -26,7 +26,7 @@ export default function ProjectManager({ admin, user, data, users }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (name && description && assignedTo > 0) {
+    if (name && description) {
       project.ID = data?.ID ?? 0;
       project.CompanyID = admin ? admin.ID : user?.CompanyID;
       project.AssignedTo = assignedTo;
@@ -98,13 +98,6 @@ export default function ProjectManager({ admin, user, data, users }) {
               </option>
             ))}
           </select>
-          {assignedTo < 1 ? (
-            <label className="text-small error">
-              Projects must have a manager
-            </label>
-          ) : (
-            ""
-          )}
         </section>
         <button type="submit" className="bg large">
           Submit

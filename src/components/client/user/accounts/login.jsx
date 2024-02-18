@@ -34,6 +34,13 @@ export default function Login({ setRegState }) {
     toast(res);
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const userData = { email: "demo@issues.com", password: "password" };
+    let res = await adminLogin(userData);
+    toast(res);
+  };
+
   return (
     <>
       <div className="flex-row flex-center logo no-select">
@@ -87,6 +94,16 @@ export default function Login({ setRegState }) {
             </div>
           </form>
         </section>
+      </div>
+      <div className="bg padding radius w-400">
+        <button
+          aria-label="sign in"
+          className="w-full text-large no-select"
+          type="button"
+          onClick={(e) => demoLogin(e)}
+        >
+          DEMO
+        </button>
       </div>
     </>
   );
