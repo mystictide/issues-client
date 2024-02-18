@@ -83,7 +83,7 @@ export default function IssueStateFunctions({ admin, user, issue }) {
         ) : (
           <button
             type="button"
-            className="h-full w-full no-radius type"
+            className="h-full w-full no-radius type text-small"
             name="typeModal"
             onClick={(e) =>
               setModalStates((prevState) => ({
@@ -111,7 +111,7 @@ export default function IssueStateFunctions({ admin, user, issue }) {
         ) : (
           <button
             type="button"
-            className="h-full w-full no-radius status"
+            className="h-full w-full no-radius status text-small"
             name="statusModal"
             onClick={(e) =>
               setModalStates((prevState) => ({
@@ -141,7 +141,7 @@ export default function IssueStateFunctions({ admin, user, issue }) {
         ) : (
           <button
             type="button"
-            className="h-full w-full no-radius priority"
+            className="h-full w-full no-radius priority text-small"
             name="priorityModal"
             onClick={(e) =>
               setModalStates((prevState) => ({

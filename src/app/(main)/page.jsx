@@ -143,7 +143,7 @@ export default async function Main() {
             </div>
             <div className="flex-column w-half">
               <h3>Latest Comments</h3>
-              <div className="flex-column flex-wrap w-full">
+              <div className="flex-column flex-wrap w-full comments">
                 {comments?.length && comments[0].ID ? (
                   <>
                     {comments?.map((comment) => (
@@ -152,8 +152,8 @@ export default async function Main() {
                         className="bg flex-row flex-divide interactive no-radius padding"
                         href={`/issues/view/${comment.IssueID}`}
                       >
-                        <h6 className="text-center">{comment.Body}</h6>
-                        <h6 className="text-center">
+                        <h6 className="weight-5">{comment.Body}</h6>
+                        <h6 className="flex-row flex-center text-center weight-5 author">
                           by{" "}
                           {comment.User.ID > 0
                             ? comment.User.Name

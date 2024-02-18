@@ -36,7 +36,7 @@ export default async function ProjectsList({ admin, user, projects }) {
           <ul className="w-full">
             {projects.data?.map((project) => (
               <li key={project.ID} className="flex-row w-full">
-                <h4 className="flex-row flex-start padding tb-40 tb-link">
+                <h4 className="flex-row flex-start padding tb-40 tb-link text-small">
                   {project.Name}
                 </h4>
                 <div className="flex-row flex-start no-select tb-40">
