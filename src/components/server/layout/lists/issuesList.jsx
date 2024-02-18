@@ -33,7 +33,7 @@ export default async function IssuesList({ admin, user, issues }) {
             {issues.data?.map((issue) => (
               <li key={issue.ID} className="flex-row w-full">
                 <a
-                  className="flex-row flex-start tb-40 tb-link"
+                  className="flex-row flex-start tb-40 tb-link text-small"
                   aria-label="manage issues"
                   href={`/issues/view/${issue.ID}`}
                 >

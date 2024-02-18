@@ -1,4 +1,4 @@
-Issues is a basic interface designed to help manage projects by enabling teams to track, prioritize, and resolve issues efficiently. 
+Issues is a basic interface designed to help manage projects by enabling teams to track, prioritize, and resolve issues. 
 
 ### Local build   
 To build Issues locally, simply clone the repository and install the necessary dependencies:

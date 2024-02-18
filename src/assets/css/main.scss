@@ -646,7 +646,6 @@ button.large {
                 position: absolute;
                 left: 10px;
             }
-
             .comment-header {
                 margin-top: 3.1rem;
             }
@@ -769,6 +768,16 @@ button.large {
             }
             .box-issue {
                 flex: 1;
+            }
+        }
+        .comments {
+            h6 {
+                height: 50px;
+                overflow: hidden;
+                width: 80%;
+            }
+            h6.author {
+                width: 20%;
             }
         }
     }
