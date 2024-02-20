@@ -10,9 +10,8 @@ import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { BsPlusSquareFill } from "react-icons/bs";
 
-export default async function Users({ searchParams }) {
+export default async function Projects({ searchParams }) {
   const cookieStore = cookies();
   const admin = readCookie(cookieStore, "admin");
   const user = readCookie(cookieStore, "auth");
@@ -35,19 +34,7 @@ export default async function Users({ searchParams }) {
     <>
       <Header page={"projects"} />
       <div className="content-wrapper flex-row">
-        <section>
-          <div className="manage flex-row flex-center">
-            <a
-              className="w-full h-full flex-row flex-center no-select manage"
-              aria-label="add new project"
-              href="/projects/manage/"
-            >
-              <BsPlusSquareFill />
-              <h1>New Project</h1>
-            </a>
-          </div>
-          <ProjectsFilter filter={filter} />
-        </section>
+        <ProjectsFilter filter={filter} />
         <div className="content flex-column">
           <div className="flex-column">
             {projects?.data?.length > 0 ? (

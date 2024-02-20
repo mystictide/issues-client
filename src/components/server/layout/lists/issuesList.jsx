@@ -14,10 +14,10 @@ export default async function IssuesList({ admin, user, issues }) {
       <section className="table flex-column">
         <div className="bg t-header h-full">
           <ul className="flex-row h-full w-full">
-            <li className="h-full tb-40 flex-row flex-start title">Title</li>
-            <li className="h-full tb-20 flex-row flex-center">Type</li>
-            <li className="h-full tb-20 flex-row flex-center">Status</li>
-            <li className="h-full tb-20 flex-row flex-center">Priority</li>
+            <li className="h-full tb-40 flex-row flex-start title mobile-link">Title</li>
+            <li className="h-full tb-20 flex-row flex-center mobile-hide">Type</li>
+            <li className="h-full tb-20 flex-row flex-center mobile-hide">Status</li>
+            <li className="h-full tb-20 flex-row flex-center mobile-hide">Priority</li>
             {admin ||
             user.Role.Attributes.some((r) => [1, 2, 3, 4].includes(r)) ? (
               <li className="h-full functions flex-row flex-start">
@@ -33,7 +33,7 @@ export default async function IssuesList({ admin, user, issues }) {
             {issues.data?.map((issue) => (
               <li key={issue.ID} className="flex-row w-full">
                 <a
-                  className="flex-row flex-start tb-40 tb-link text-small"
+                  className="flex-row flex-start tb-40 tb-link text-small mobile-link"
                   aria-label="manage issues"
                   href={`/issues/view/${issue.ID}`}
                 >
