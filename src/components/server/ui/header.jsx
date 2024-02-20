@@ -18,7 +18,7 @@ export default async function Header({ page }) {
     <nav className="bg flex-row flex-center">
       <div className="navbar flex w-full h-full flex-row flex-end">
         <a
-          className="flex-row flex-center logo no-select mobile-hide"
+          className="flex-row flex-center logo no-select mobile-hide screen"
           aria-label="Home"
           href="/"
         >
@@ -44,7 +44,7 @@ export default async function Header({ page }) {
             </li>
           </ul>
         </section>
-        <section className="mobile-hide">
+        <section className="flex-column half-gap mobile-hide">
           {user ? (
             <h5 className="text-center">
               {user.FirstName} {user.LastName}
