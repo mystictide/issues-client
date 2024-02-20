@@ -10,7 +10,6 @@ import Header from "@/components/server/ui/header";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { BsPlusSquareFill } from "react-icons/bs";
 
 export default async function Issues({ searchParams }) {
   const cookieStore = cookies();
@@ -40,19 +39,7 @@ export default async function Issues({ searchParams }) {
     <>
       <Header page={"issues"} />
       <div className="content-wrapper flex-row">
-        <section>
-          <div className="manage flex-row flex-center">
-            <a
-              className="w-full h-full flex-row flex-center no-select manage"
-              aria-label="add new issue"
-              href="/issues/manage/"
-            >
-              <BsPlusSquareFill />
-              <h1>New Issue</h1>
-            </a>
-          </div>
-          <IssuesFilter filter={filter} projects={projects} />
-        </section>
+        <IssuesFilter filter={filter} projects={projects} />
         <div className="content flex-column">
           <div className="flex-column">
             {issues?.data?.length > 0 ? (

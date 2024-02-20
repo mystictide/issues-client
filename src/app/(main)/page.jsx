@@ -32,7 +32,7 @@ export default async function Main() {
         <div className="flex-column w-full padding">
           <section className="flex-column w-full padding">
             <h3>Projects Overview</h3>
-            <div className="flex-row flex-wrap w-full stats">
+            <div className="overview flex-row flex-wrap w-full stats">
               {projects?.length > 0 && projects[0].ID ? (
                 <>
                   {projects.map((project) => (
@@ -45,7 +45,7 @@ export default async function Main() {
                       <h6 className="text-center">
                         Created - {formatDate(project.CreatedDate)}
                       </h6>
-                      <div className="flex-row">
+                      <div className="flex-center flex-row">
                         <div className="flex-column flex-center">
                           <h5>Open Issues</h5>
                           <h5>{project.OpenIssues}</h5>
@@ -78,7 +78,7 @@ export default async function Main() {
           </section>
           <section className="flex-column w-full padding">
             <h3>Issues Overview</h3>
-            <div className="flex-row flex-wrap w-full stats">
+            <div className="overview flex-row flex-wrap w-full stats">
               <a
                 className="bg flex-column box box-issue radius"
                 href="/issues?type=1"
@@ -117,7 +117,7 @@ export default async function Main() {
               </a>
             </div>
           </section>
-          <section className="flex-row w-full padding">
+          <section className="overview-latest flex-row w-full padding">
             <div className="flex-column w-half">
               <h3>Latest Issues</h3>
               <div className="flex-column flex-wrap w-full">
@@ -129,7 +129,7 @@ export default async function Main() {
                         className="bg flex-row flex-divide interactive no-radius padding"
                         href={`/issues/view/${issue.ID}`}
                       >
-                        <h5 className="text-center">{issue.Title}</h5>
+                        <h5 className="">{issue.Title}</h5>
                         <h6 className="text-center">
                           Created - {formatDate(issue.CreatedDate)}
                         </h6>

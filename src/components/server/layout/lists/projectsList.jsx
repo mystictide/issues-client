@@ -21,7 +21,7 @@ export default async function ProjectsList({ admin, user, projects }) {
       <Pager data={projects} url={"/projects"} />
       <section className="table flex-column">
         <div className="bg">
-          <ul className="flex-row w-full">
+          <ul className="t-head flex-row w-full">
             <li className="h-full tb-40 padding">Project Name</li>
             <li className="h-full tb-40 padding">Description</li>
             {admin ||

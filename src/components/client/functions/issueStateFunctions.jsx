@@ -68,7 +68,7 @@ export default function IssueStateFunctions({ admin, user, issue }) {
 
   return (
     <>
-      <div className="flex-row flex-center no-select tb-20 states">
+      <div className="flex-row flex-center no-select tb-20 states mobile-hide">
         {typeModal ? (
           <select
             defaultValue={Types.find((item) => item.ID === issue.Type).ID}
@@ -96,7 +96,7 @@ export default function IssueStateFunctions({ admin, user, issue }) {
           </button>
         )}
       </div>
-      <div className="flex-row flex-center no-select tb-20 states">
+      <div className="flex-row flex-center no-select tb-20 states mobile-hide">
         {statusModal ? (
           <select
             defaultValue={States.find((item) => item.ID === issue.Status).ID}
@@ -124,7 +124,7 @@ export default function IssueStateFunctions({ admin, user, issue }) {
           </button>
         )}
       </div>
-      <div className="flex-row flex-center no-select tb-20 states">
+      <div className="flex-row flex-center no-select tb-20 states mobile-hide">
         {priorityModal ? (
           <select
             defaultValue={

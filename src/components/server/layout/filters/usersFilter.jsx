@@ -1,9 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { BsPlusSquareFill } from "react-icons/bs";
 
 export default function UsersFilter({ filter }) {
   const router = useRouter();
+  const [filterHidden, setFilterHidden] = useState(true);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -11,26 +14,52 @@ export default function UsersFilter({ filter }) {
   };
 
   return (
-    <div className="bg flex-column sidebar filter">
-      <section className="w-full h-full">
-        <h5 className="tb-body text-center padding no-select">Search & Filter</h5>
-        <form className="flex-column" onSubmit={onSubmit}>
-          <input
-            type="text"
-            id="keyword"
-            name="keyword"
-            defaultValue={filter.keyword ?? ""}
-            placeholder="...search by name"
-          />
-          <button
-            aria-label="search"
-            type="submit"
-            className="flex-row flex-center h-full w-full padding"
-          >
-            Search
-          </button>
-        </form>
+    <>
+      <button
+        className="bg padding w-full m-view"
+        onClick={() => setFilterHidden((prevState) => !prevState)}
+      >
+        Search & Filter
+      </button>
+      <section
+        className={`sidebar-view flex-row flex-center ${
+          filterHidden ? "hidden" : ""
+        }`}
+      >
+        <div className="bg flex-column sidebar filter">
+          <div className="manage flex-row flex-center">
+          <a
+              className="w-full h-full flex-row flex-center no-select manage"
+              aria-label="add new user"
+              href="/settings/users/manage/"
+            >
+              <BsPlusSquareFill />
+              <h1>New User</h1>
+            </a>
+          </div>
+          <section className="w-full h-full">
+            <h5 className="tb-body text-center padding no-select">
+              Search & Filter
+            </h5>
+            <form className="flex-column" onSubmit={onSubmit}>
+              <input
+                type="text"
+                id="keyword"
+                name="keyword"
+                defaultValue={filter.keyword ?? ""}
+                placeholder="...search by name"
+              />
+              <button
+                aria-label="search"
+                type="submit"
+                className="flex-row flex-center h-full w-full padding"
+              >
+                Search
+              </button>
+            </form>
+          </section>
+        </div>
       </section>
-    </div>
+    </>
   );
 }

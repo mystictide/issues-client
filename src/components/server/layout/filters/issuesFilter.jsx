@@ -2,10 +2,13 @@
 
 import { IssueClass } from "@/models/main/issue";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { BsPlusSquareFill } from "react-icons/bs";
 
 export default function IssuesFilter({ filter, projects }) {
   const router = useRouter();
   const entity = new IssueClass();
+  const [filterHidden, setFilterHidden] = useState(true);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +21,7 @@ export default function IssuesFilter({ filter, projects }) {
         e.target.sortBy.value
       }&isActive=${!e.target.isActive.checked}`
     );
+    setFilterHidden((prevState) => !prevState);
   };
 
   const handleDefault = (value) => {
@@ -25,113 +29,139 @@ export default function IssuesFilter({ filter, projects }) {
   };
 
   return (
-    <div className="bg flex-column sidebar filter">
-      <section className="w-full h-full">
-        <h5 className="tb-body text-center padding no-select">
-          Search & Filter
-        </h5>
-        <form className="flex-column" onSubmit={onSubmit}>
-          {projects ? (
-            <select
-              id="project"
-              name="project"
-              defaultValue={filter.projectid < 1 ? "default" : filter.projectid}
+    <>
+      <button
+        className="bg padding w-full m-view"
+        onClick={() => setFilterHidden((prevState) => !prevState)}
+      >
+        Search & Filter
+      </button>
+      <section
+        className={`sidebar-view flex-row flex-center ${
+          filterHidden ? "hidden" : ""
+        }`}
+      >
+        <div className="bg flex-column sidebar filter">
+          <div className="manage flex-row flex-center">
+            <a
+              className="w-full h-full flex-row flex-center no-select manage"
+              aria-label="add new project"
+              href="/issues/manage/"
             >
-              <option className="default" value="default" disabled>
-                ...search by project
-              </option>
-              <option value="0">All Projects</option>
-              {projects.map((p) => (
-                <option key={p.ID} value={p.ID}>
-                  {p.Name}
-                </option>
-              ))}
-            </select>
-          ) : (
-            ""
-          )}
+              <BsPlusSquareFill />
+              <h1>New Issue</h1>
+            </a>
+          </div>
+          <section className="w-full h-full">
+            <h5 className="tb-body text-center padding no-select">
+              Search & Filter
+            </h5>
+            <form className="flex-column" onSubmit={onSubmit}>
+              {projects ? (
+                <select
+                  id="project"
+                  name="project"
+                  defaultValue={
+                    filter.projectid < 1 ? "default" : filter.projectid
+                  }
+                >
+                  <option className="default" value="default" disabled>
+                    ...search by project
+                  </option>
+                  <option value="0">All Projects</option>
+                  {projects.map((p) => (
+                    <option key={p.ID} value={p.ID}>
+                      {p.Name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                ""
+              )}
 
-          <input
-            type="text"
-            id="keyword"
-            name="keyword"
-            defaultValue={filter.keyword ?? ""}
-            placeholder="...search by name"
-          />
-          <select
-            id="type"
-            name="type"
-            defaultValue={filter.type < 1 ? "default" : filter.type}
-          >
-            <option className="default" value="default" disabled>
-              ...search by type
-            </option>
-            <option value="0">All Types</option>
-            {entity.Type?.map((type) => (
-              <option key={type.ID} value={type.ID}>
-                {type.Value}
-              </option>
-            ))}
-          </select>
-          <select
-            id="status"
-            name="status"
-            defaultValue={filter.status < 1 ? "default" : filter.status}
-          >
-            <option className="default" value="default" disabled>
-              ...search by status
-            </option>
-            <option value="0">All States</option>
-            {entity.Status?.map((s) => (
-              <option key={s.ID} value={s.ID}>
-                {s.Value}
-              </option>
-            ))}
-          </select>
-          <select
-            id="priority"
-            name="priority"
-            defaultValue={filter.priority < 1 ? "default" : filter.priority}
-          >
-            <option className="default" value="default" disabled>
-              ...search by priority
-            </option>
-            <option value="0">All Priorities</option>
-            {entity.Priority?.map((priority) => (
-              <option key={priority.ID} value={priority.ID}>
-                {priority.Value}
-              </option>
-            ))}
-          </select>
-          <select
-            id="sortBy"
-            name="sortBy"
-            defaultValue={filter.sortby ?? "desc"}
-          >
-            <option className="default" value="default" disabled>
-              ...sort by
-            </option>
-            <option value="desc">Latest</option>
-            <option value="asc">Oldest</option>
-          </select>
-          <label className="relative checkbox flex-row flex-start no-select">
-            Archived
-            <input
-              id="isActive"
-              name="isActive"
-              type="checkbox"
-              defaultValue={!filter.IsActive}
-            />
-          </label>
-          <button
-            aria-label="search"
-            type="submit"
-            className="flex-row flex-center h-full w-full padding"
-          >
-            Search
-          </button>
-        </form>
+              <input
+                type="text"
+                id="keyword"
+                name="keyword"
+                defaultValue={filter.keyword ?? ""}
+                placeholder="...search by name"
+              />
+              <select
+                id="type"
+                name="type"
+                defaultValue={filter.type < 1 ? "default" : filter.type}
+              >
+                <option className="default" value="default" disabled>
+                  ...search by type
+                </option>
+                <option value="0">All Types</option>
+                {entity.Type?.map((type) => (
+                  <option key={type.ID} value={type.ID}>
+                    {type.Value}
+                  </option>
+                ))}
+              </select>
+              <select
+                id="status"
+                name="status"
+                defaultValue={filter.status < 1 ? "default" : filter.status}
+              >
+                <option className="default" value="default" disabled>
+                  ...search by status
+                </option>
+                <option value="0">All States</option>
+                {entity.Status?.map((s) => (
+                  <option key={s.ID} value={s.ID}>
+                    {s.Value}
+                  </option>
+                ))}
+              </select>
+              <select
+                id="priority"
+                name="priority"
+                defaultValue={filter.priority < 1 ? "default" : filter.priority}
+              >
+                <option className="default" value="default" disabled>
+                  ...search by priority
+                </option>
+                <option value="0">All Priorities</option>
+                {entity.Priority?.map((priority) => (
+                  <option key={priority.ID} value={priority.ID}>
+                    {priority.Value}
+                  </option>
+                ))}
+              </select>
+              <select
+                id="sortBy"
+                name="sortBy"
+                defaultValue={filter.sortby ?? "desc"}
+              >
+                <option className="default" value="default" disabled>
+                  ...sort by
+                </option>
+                <option value="desc">Latest</option>
+                <option value="asc">Oldest</option>
+              </select>
+              <label className="relative checkbox flex-row flex-start no-select">
+                Archived
+                <input
+                  id="isActive"
+                  name="isActive"
+                  type="checkbox"
+                  defaultValue={!filter.IsActive}
+                />
+              </label>
+              <button
+                aria-label="search"
+                type="submit"
+                className="flex-row flex-center h-full w-full padding"
+              >
+                Search
+              </button>
+            </form>
+          </section>
+        </div>
       </section>
-    </div>
+    </>
   );
 }
