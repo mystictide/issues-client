@@ -34,7 +34,7 @@ export default async function ViewIssue({ params }) {
       <Header />
       <div className="content-wrapper flex-row v-center">
         <div className="content flex-column">
-          <div className="flex-row">
+          <div className="issue-view flex-row">
             <div className="w-60">
               <section className="flex-column">
                 <div>
